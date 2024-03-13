@@ -49,6 +49,14 @@ sap.ui.define([
                         oDialog.open();  // 팝업창 출력
                     });
                 }
+            },
+
+
+            onDialogClose: function(){
+                let oDialog = this.byId("idDialog");
+                if(oDialog){
+                    oDialog.close(); //  팝업창 닫기
+                }
             }
         });
     });
