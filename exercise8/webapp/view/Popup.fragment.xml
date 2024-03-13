@@ -1,6 +1,7 @@
 <core:FragmentDefinition
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
 >
 
     <Dialog id="idDialog" title="이름을 팝업으로 보여주는 Dialog">
@@ -9,8 +10,10 @@
         </buttons>
 
         <content>
-            <Text text="View 모델에서 가져온 정보 : {/name}" />
-            <Text id="idNameText" text="컨트롤러에서 설정함" />
+            <l:VerticalLayout>
+                <Text text="View 모델에서 가져온 정보 : {/name} " />
+                <Text id="idNameText" text=" &#10; 컨트롤러에서 설정함" />
+            </l:VerticalLayout>
         </content>
 
     </Dialog>
