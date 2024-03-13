@@ -11,13 +11,18 @@ sap.ui.define([
 
         return Controller.extend("sync.e05.exercise8.controller.Main", {
             onInit: function () {
+
                 let sPerson = {
                     name: "도현"
                 }
 
+                // 생성하면서 데이터 전달
                 let oModel = new JSONModel(sPerson);
+
+                // 생성된 모델에 데이터 전달
+                oModel.setData(data);
+
                 let oView = this.getView();
-               
                 oView.setModel(oModel); // JSON Model 정보를 현재 View 에 등록
             },
 
