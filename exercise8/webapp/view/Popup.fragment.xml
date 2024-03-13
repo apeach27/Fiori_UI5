@@ -9,7 +9,8 @@
         </buttons>
 
         <content>
-            <Text id="idNameText" text="컨트롤에서 설정함" />
+            <Text text="View 모델에서 가져온 정보 : {/name}" />
+            <Text id="idNameText" text="컨트롤러에서 설정함" />
         </content>
 
     </Dialog>
