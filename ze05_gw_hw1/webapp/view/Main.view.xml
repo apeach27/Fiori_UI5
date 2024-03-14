@@ -1,7 +1,45 @@
 <mvc:View controllerName="ui5tablefragment.ze05gwhw1.controller.Main"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content width="100%">
+
+            <!-- 항공사 리스트를 위한 Panel -->
+            <Panel headerText="Carriers" expandable="false" expanded="true" height="500px">
+                <Table 
+                    items="{/ConnSet}"
+                    mode="SingleSelectMaster"
+                    selectionChange=".onSelectionChange"
+                    >
+                    <columns  press="onButtonClick">
+                        <Column><Label text="항공사"/></Column>
+                        <Column><Label text="항공편번호"/></Column>
+                        <Column><Label text="출발국가"/></Column>
+                        <Column><Label text="출발도시"/></Column>
+                        <Column><Label text="도착국가"/></Column>
+                        <Column><Label text="도착도시"/></Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem >
+                            <cells>
+                                <Text text="{Carrid}" />
+                                <Text text="{Connid}"/>
+                                <Text text="{Countryfr}"/>
+                                <Text text="{Cityfrom}"/>
+                                <Text text="{Countryto}"/>
+                                <Text text="{Cityto}"/>
+                                <!-- <Link text="{Url}" href="{Url}" /> -->
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+
+                </Table>
+            </Panel>
+
+        </content>
     </Page>
 </mvc:View>
