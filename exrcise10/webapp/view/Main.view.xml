@@ -4,9 +4,9 @@
     xmlns:f="sap.ui.layout.form">
     <Page id="page" title="{i18n>title}">
         <content >
-            <Carousel pages="{/ConnectionSet}">
+            <Carousel pages="{/ConnectionSet}" height="50%">
                 <pages>
-                    <Page>
+                    <Page showHeader="false">
                         <content>
                             <!-- 항공편 정보를 sap.ui.layout.form.SimpleForm으로 출력 -->
                             <f:SimpleForm >
@@ -15,11 +15,28 @@
 
                                 <Label text="Flight number" />
                                 <Text text="{Connid}" /> <!--항공편의 번호-->
+
+                                <Label text="Departure" /> <!-- 항공편의 출발도시-->
+                                <Text text="{Cityfrom}"/>
+
+                                <Label text="Destination" /> <!-- 항공편의 도착도시-->
+                                <Text  text="{Cityto}"/>
                             </f:SimpleForm>
                         </content>
                     </Page>
                 </pages>
             </Carousel>
+
+            <List items="{/ConnectionSet}">
+                <items>
+                    <!-- 이 구역은 ConnectionSet 의 라인 수 만큼 반복됨 -->
+                    <StandardListItem 
+                        title="항공사 {Carrid}, 항공편 {Connid}" 
+                        description="출발도시: {Cityfrom} / 도착도시: {Cityto}"
+                    />
+                </items>
+            </List>
+
         </content>
     </Page>
     </mvc:View>

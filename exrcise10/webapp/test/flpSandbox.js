@@ -39,7 +39,7 @@ sap.ui.define([
 							"tiles": [{
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
-									"title": "App Title",
+									"title": "Use Aggregation Binding",
 									"targetURL": "#controllerexrcise10-display"
 								}
 							}]
@@ -55,7 +55,7 @@ sap.ui.define([
 								"semanticObject": "controllerexrcise10",
 								"action": "display",
 								"description": "Use Aggregation Binding",
-								"title": "App Title",
+								"title": "Use Aggregation Binding",
 								"signature": {
 									"parameters": {}
 								},
