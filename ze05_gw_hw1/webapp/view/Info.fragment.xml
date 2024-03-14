@@ -1,19 +1,22 @@
 <core:FragmentDefinition
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
 >
 
-    <Dialog id="idDialog" title="이름을 팝업으로 보여주는 Dialog">
+    <Dialog id="idDialog" title="항공편 정보">
         <buttons>
             <Button text="닫기" press=".onDialogClose" />
         </buttons>
 
         <content>
             <l:VerticalLayout>
-                <Text text="View 모델에서 가져온 정보 : {/name} " />
-                <Text id="idNameText" text=" &#10; 컨트롤러에서 설정함" />
+                <f:SimpleForm layout="ResponsiveGridLayout">    
+                    <l:HorizontalLayout >
+                        <Label text="항공사"/><Text text="{Carrid}" />
+                    </l:HorizontalLayout>
+                </f:SimpleForm>
             </l:VerticalLayout>
         </content>
 

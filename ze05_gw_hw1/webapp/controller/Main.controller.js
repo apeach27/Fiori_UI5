@@ -28,16 +28,15 @@ sap.ui.define([
                 sap.m.MessageToast.show("선택 라인은 항공사: "+carrid+ "항공편: "+connid +" 의 정보입니다.");
 
                 
-                // Popup.fragment.xml 을 팝업창으로 호출함
+                // Info.fragment.xml 을 팝업창으로 호출함
                 let oView = this.getView();
                 let oDialog = this.byId("idDialog");
 
                 if( oDialog ){
+                    oDialog.open();
 
-                    oDialog.open(); // Fragment 를 Load 한 적 있으면 byId 로 찾아라
-                                    // 그렇게 찾은 Fragment 를 팝업으로 보여줌
                 } else {
-                    // Popup.fragment.xml 파일을 읽어오기
+                    // Info.fragment.xml 파일을 읽어오기
                     // Controller 도 연결함
                     let oFragment = sap.ui.core.Fragment.load({
                         id: oView.getId(),
@@ -56,6 +55,7 @@ sap.ui.define([
                 }
             },
             
+            // 닫기버튼 구현
             onDialogClose: function(){
                 let oDialog = this.byId("idDialog");
                 if(oDialog){
