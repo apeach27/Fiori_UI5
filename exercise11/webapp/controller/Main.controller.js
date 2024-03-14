@@ -10,6 +10,17 @@ sap.ui.define([
         return Controller.extend("sync.e05.exercise11.controller.Main", {
             onInit: function () {
 
+            },
+
+            onSelectionChange: function( oEvent ){
+                // 선택한 Item 정보를 Event 로 부터 가져옴
+                let onItem = oEvent.getParameter("listItem");
+
+                // 선택한 라인에서 출력되는 데이터의 Model의 값 정보
+                let oContext = onItem.getBindingContext();
+
+                // 해당 Model 내용의 Carrid 속성을 화면에 출력
+                sap.m.MessageToast.show(oContext.getProperty("Carrid"));
             }
         });
     });

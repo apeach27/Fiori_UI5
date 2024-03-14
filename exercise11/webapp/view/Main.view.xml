@@ -2,6 +2,36 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content>
+
+            <!-- 항공사 리스트를 위한 Panel -->
+            <Panel headerText="Carriers" expandable="false" expanded="true" height="200px">
+                <Table items="{/CarrierSet}"
+                        mode="SingleSelectLeft"
+                        selectionChange=".onSelectionChange"
+                >
+                    <columns>
+                        <Column><Label text="항공사ID"/></Column>
+                        <Column><Label text="항공편번호"/></Column>
+                        <Column><Label text="통화코드"/></Column>
+                        <Column><Label text="홈페이지"/></Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem >
+                            <cells>
+                                <Text text="{Carrid}" />
+                                <Text text="{Carrname}"/>
+                                <Text text="{Currcode}"/>
+                                <Text text="{Url}"/>
+                                <!-- <Link text="{Url}" href="{Url}" /> -->
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+
+                </Table>
+            </Panel>
+
+        </content>
     </Page>
 </mvc:View>
