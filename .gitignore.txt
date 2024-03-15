@@ -5,6 +5,8 @@ test.txt
 *.text
 *.exe
 *.zip
+*.zi
+*.txt
 
 ## 폴더 무시
 test/
