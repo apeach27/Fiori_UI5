@@ -1,7 +1,7 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Fri Mar 15 2024 17:12:07 GMT+0900 (Korean Standard Time)|
+|**Generation Date and Time**<br>Fri Mar 15 2024 16:47:16 GMT+0900 (Korean Standard Time)|
 |**App Generator**<br>@sap/generator-fiori-freestyle|
 |**App Generator Version**<br>1.12.5|
 |**Generation Platform**<br>Visual Studio Code|
@@ -9,7 +9,7 @@
 |**Service Type**<br>SAP System (ABAP On Premise)|
 |**Service URL**<br>HTTP://210.16.199.140:8001/sap/opu/odata/sap/YE05_GW004_SRV
 |**Module Name**<br>exercise13|
-|**Application Title**<br>binding 활용하기|
+|**Application Title**<br>Binding 에서 다양하게 사용해보기|
 |**Namespace**<br>sync.e05|
 |**UI5 Theme**<br>sap_fiori_3|
 |**UI5 Version**<br>1.71.64|

@@ -39,7 +39,7 @@ sap.ui.define([
 							"tiles": [{
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
-									"title": "binding 활용하기",
+									"title": "Binding 에서 다양하게 사용해보기",
 									"targetURL": "#synce05exercise13-display"
 								}
 							}]
@@ -55,7 +55,7 @@ sap.ui.define([
 								"semanticObject": "synce05exercise13",
 								"action": "display",
 								"description": "An SAP Fiori application.",
-								"title": "binding 활용하기",
+								"title": "Binding 에서 다양하게 사용해보기",
 								"signature": {
 									"parameters": {}
 								},
