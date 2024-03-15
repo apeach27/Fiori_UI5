@@ -25,10 +25,6 @@ sap.ui.define([
 
                 let carrid = oContext.getProperty("Carrid");
                 let connid = oContext.getProperty("Connid");
-                let countryfr = oContext.getProperty("Countryfr");
-                let cityfrom = oContext.getProperty("Cityfrom");
-                let countryto = oContext.getProperty("Countryto");
-                let cityto = oContext.getProperty("Cityto");
 
                 // 해당 Model 내용의 Carrid 속성을 화면에 출력
                 sap.m.MessageToast.show("선택 라인은 항공사: "+carrid+ "항공편: "+connid +" 의 정보입니다.");
@@ -41,10 +37,8 @@ sap.ui.define([
                 if( oDialog ){
 
                     let oNameText = this.byId("idNameText");
-                    oNameText.setText(carrid);
+                    oNameText.setText("항공사: " + carrid + "\n항공편: " + connid);
 
-                    let oConnText = this.byId("idConnText");
-                    oConnText.setText(connid);
 
                     oDialog.open();
 
