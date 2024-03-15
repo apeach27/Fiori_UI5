@@ -33,6 +33,11 @@ sap.ui.define([
                 let oDialog = this.byId("idDialog");
 
                 if( oDialog ){
+
+                    let oNameText = this.byId("idNameText");
+                    // 이름이 입력된 입력 필드의 값을 전달함
+                    oNameText.setText(carrid);   
+
                     oDialog.open();
 
                 } else {

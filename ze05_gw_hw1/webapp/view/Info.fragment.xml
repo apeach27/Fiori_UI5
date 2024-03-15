@@ -14,7 +14,7 @@
             <l:VerticalLayout>
                 <f:SimpleForm layout="ResponsiveGridLayout">    
                     <l:HorizontalLayout >
-                        <Label text="항공사"/><Text text="{Carrid}" />
+                        <Label text="항공사"/><Text id="idNameText" text="{/Carrid}" />
                     </l:HorizontalLayout>
                 </f:SimpleForm>
             </l:VerticalLayout>
