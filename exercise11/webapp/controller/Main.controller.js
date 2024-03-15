@@ -21,6 +21,19 @@ sap.ui.define([
 
                 // 해당 Model 내용의 Carrid 속성을 화면에 출력
                 sap.m.MessageToast.show(oContext.getProperty("Carrid"));
+
+                // 선택한 라인의 접근 경로
+                let selectedPath = oContext.getPath();
+
+                // 항공편이 보이는 Table의 ID 로 화면 구성 요소를 찾음
+                let oConnTable = this.byId("idConnTable");
+
+                // 선택한 라인의 접근 경로를 현재 경로로 취급하도록
+                // 테이블에 bindElement 메소드 호출
+                // 이렇게 테이블에서 현재 경로를 설정하면
+                // item 에 적은 {toConnection} 은
+                // {선택한 항공사/toConnection} 이라고 적은 것과 같도록 됨
+                oConnTable.bindElement(selectedPath);
             }
         });
     });
