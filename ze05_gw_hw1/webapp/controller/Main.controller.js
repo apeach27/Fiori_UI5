@@ -25,6 +25,10 @@ sap.ui.define([
 
                 let carrid = oContext.getProperty("Carrid");
                 let connid = oContext.getProperty("Connid");
+                let Countryfr = oContext.getProperty("Countryfr");
+                let cityfrom = oContext.getProperty("Cityfrom");
+                let countryto = oContext.getProperty("Countryto");
+                let cityto = oContext.getProperty("Cityto");
 
                 // 해당 Model 내용의 Carrid 속성을 화면에 출력
                 sap.m.MessageToast.show("선택 라인은 항공사: "+carrid+ "항공편: "+connid +" 의 정보입니다.");
@@ -37,12 +41,12 @@ sap.ui.define([
                 if( oDialog ){
 
                     let oNameText = this.byId("idNameText");
-                    oNameText.setText("항공사: " + carrid + "\n항공편: " + connid);
+                    oNameText.setText("항공사 " + carrid + "\n항공편번호 " + connid + "\n출발국가 " + Countryfr + "\n출발도시 " + cityfrom + "\n도착국가 " + countryto + "\n도착도시 " + cityto);
 
 
                     oDialog.open();
 
-                } else {
+                } else {                    
                     // Info.fragment.xml 파일을 읽어오기
                     // Controller 도 연결함
                     let oFragment = sap.ui.core.Fragment.load({
@@ -52,18 +56,15 @@ sap.ui.define([
                         controller: this
 
                     });
-
+                
+                    let oNameText = this.byId("idNameText");
+                    oNameText.setText("항공사 " + carrid + "\n항공편번호 " + connid + "\n출발국가 " + Countryfr + "\n출발도시 " + cityfrom + "\n도착국가 " + countryto + "\n도착도시 " + cityto);
                     // Fragment Load 가 완료되면 Main View 에 연결함
                     // (Main View 의 모델도 이용 가능)
                     oFragment.then( function( oDialog ){
+
                         oView.addDependent(oDialog)  // View 에 연결
-
-                        let oNameText = this.byId("idNameText");
-                        oNameText.setText(carrid);
-
-                        let oConnText = this.byId("idConnText");
-                        oConnText.setText(connid); 
-
+                                
                         oDialog.open();  // 팝업창 출력
                     });
                 }
