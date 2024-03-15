@@ -23,6 +23,52 @@
                 expandable="{= ! ${device>/system/desktop} }" 
                 expanded="{device>/system/desktop}">
             
+                <content>
+                    <Table id="idTable"
+                        items = "{/FlightSet}">
+
+                        <columns>
+                            <Column>
+                                <Label text="Carrier" />
+                            </Column>
+                            <Column>
+                                <Label text="Connection" />
+                            </Column>
+                            <Column>
+                                <Label text="Flight Date" />
+                            </Column>
+                            <Column>
+                                <Label text="Price" />
+                            </Column>
+                            <Column>
+                                <Label text="Availability" />
+                            </Column>
+                            <Column>
+                                <Label text="Free Seats" />
+                            </Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem>
+                                <ObjectIdentifier title="{Carrid}" />
+                                <ObjectIdentifier title="{Connid}" />
+                                <ObjectIdentifier title="{
+                                        path: 'Fldate',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {
+                                            pattern: 'yy-MM-dd'
+                                        }                                
+                                }" />
+
+                                <ObjectNumber number="{Price}" unit="{Currency}" />
+                                <CheckBox selected="" />
+                                <Text text=""/>
+                            </ColumnListItem>
+                        </items>
+
+                    </Table>
+                </content>
+
             </Panel>
 
         </content>
