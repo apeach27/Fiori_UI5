@@ -14,7 +14,12 @@
             <l:VerticalLayout>
                 <f:SimpleForm layout="ResponsiveGridLayout">    
                     <l:HorizontalLayout >
-                        <Label text="항공사"/><Text id="idNameText" text="{/Carrid}" />
+                        <Label text="항공사"/><Text id="idNameText"/>
+                        <Label text="항공편"/><Text id="idConnText"/>
+                        <Label text="출발국가"/><Text id="idCtrFrText"/>
+                        <Label text="출발도시"/><Text id="idCitFrText"/>
+                        <Label text="도착국가"/><Text id="idCtrToText"/>
+                        <Label text="도착도시"/><Text id="idConnText"/>
                     </l:HorizontalLayout>
                 </f:SimpleForm>
             </l:VerticalLayout>

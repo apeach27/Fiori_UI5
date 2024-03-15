@@ -1,17 +1,19 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    "sap/ui/model/json/JSONModel"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller, JSONModel) {
         "use strict";
 
         return Controller.extend("ui5tablefragment.ze05gwhw1.controller.Main", {
             onInit: function () {
 
             },
+            
 
             onSelectionChange: function( oEvent ){
 
@@ -23,6 +25,10 @@ sap.ui.define([
 
                 let carrid = oContext.getProperty("Carrid");
                 let connid = oContext.getProperty("Connid");
+                let countryfr = oContext.getProperty("Countryfr");
+                let cityfrom = oContext.getProperty("Cityfrom");
+                let countryto = oContext.getProperty("Countryto");
+                let cityto = oContext.getProperty("Cityto");
 
                 // 해당 Model 내용의 Carrid 속성을 화면에 출력
                 sap.m.MessageToast.show("선택 라인은 항공사: "+carrid+ "항공편: "+connid +" 의 정보입니다.");
@@ -35,8 +41,10 @@ sap.ui.define([
                 if( oDialog ){
 
                     let oNameText = this.byId("idNameText");
-                    // 이름이 입력된 입력 필드의 값을 전달함
-                    oNameText.setText(carrid);   
+                    oNameText.setText(carrid);
+
+                    let oConnText = this.byId("idConnText");
+                    oConnText.setText(connid);
 
                     oDialog.open();
 
@@ -55,6 +63,13 @@ sap.ui.define([
                     // (Main View 의 모델도 이용 가능)
                     oFragment.then( function( oDialog ){
                         oView.addDependent(oDialog)  // View 에 연결
+
+                        let oNameText = this.byId("idNameText");
+                        oNameText.setText(carrid);
+
+                        let oConnText = this.byId("idConnText");
+                        oConnText.setText(connid); 
+
                         oDialog.open();  // 팝업창 출력
                     });
                 }
