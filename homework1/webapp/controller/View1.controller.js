@@ -1,5 +1,7 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageToast",
+    "sap/ui/model/json/JSONModel"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -10,6 +12,70 @@ sap.ui.define([
         return Controller.extend("sync.e05.homework1.controller.View1", {
             onInit: function () {
 
+            },
+            
+            onSelectionChange: function( oEvent ){
+
+                // 선택한 Item 정보를 Event 로 부터 가져옴
+                let onItem = oEvent.getParameter("listItem");
+
+                // 선택한 라인에서 출력되는 데이터의 Model의 값 정보
+                let oContext = onItem.getBindingContext();
+
+                let carrid = oContext.getProperty("Carrid");
+                let connid = oContext.getProperty("Connid");
+                let fltime = oContext.getProperty("Fltime");
+                let deptime = oContext.getProperty("Deptime");
+                let arrtime = oContext.getProperty("Arrtime");
+                let distance = oContext.getProperty("Distance");
+                let distid = oContext.getProperty("Distid");
+
+                // 해당 Model 내용의 Carrid 속성을 화면에 출력
+                sap.m.MessageToast.show("선택 라인은 \n 항공사: "+carrid+ ", 항공편: "+connid +"\n 의 정보입니다.");
+
+                
+                // Info.fragment.xml 을 팝업창으로 호출함
+                let oView = this.getView();
+                let oDialog = this.byId("idDialog");
+
+                if( oDialog ){
+
+                    let oNameText = this.byId("idNameText");
+                    oNameText.setText("항공사 " + carrid + "\n항공편번호 " + connid + "\n비행시간 " + fltime + "\n출발시간 " + deptime + "\n도착시간 " + arrtime + "\n비행거리 " + distance + distid);
+
+
+                    oDialog.open();
+
+                } else {                    
+                    // Info.fragment.xml 파일을 읽어오기
+                    // Controller 도 연결함
+                    let oFragment = sap.ui.core.Fragment.load({
+                        id: oView.getId(),
+                        name: "sync.e05.homework1.view.Info",
+                        type: "XML",
+                        controller: this
+
+                    });
+                
+                    let oNameText = this.byId("idNameText");
+                    oNameText.setText("항공사 " + carrid + "\n항공편번호 " + connid + "\n비행시간 " + fltime + "\n출발시간 " + deptime + "\n도착시간 " + arrtime + "\n비행거리 " + distance + distid);
+                    // Fragment Load 가 완료되면 Main View 에 연결함
+                    // (Main View 의 모델도 이용 가능)
+                    oFragment.then( function( oDialog ){
+
+                        oView.addDependent(oDialog)  // View 에 연결
+                                
+                        oDialog.open();  // 팝업창 출력
+                    });
+                }
+            },
+            
+            // 닫기버튼 구현
+            onDialogClose: function(){
+                let oDialog = this.byId("idDialog");
+                if(oDialog){
+                    oDialog.close(); //  팝업창 닫기
+                }
             }
         });
     });

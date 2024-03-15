@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+>
+
+    <Dialog id="idDialog" title="항공편 정보">
+        <buttons>
+            <Button text="닫기" press=".onDialogClose" />
+        </buttons>
+
+        <content width="100%">
+            <f:SimpleForm layout="ResponsiveGridLayout">    
+                <f:content>
+                    <Label text=""/><Text id="idNameText"/>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+
+    </Dialog>
+
+</core:FragmentDefinition>
