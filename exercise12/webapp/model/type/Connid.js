@@ -18,7 +18,7 @@ sap.ui.define([
             },
 
             vaildateValue: function( oValue ){
-                if( /\d{4}$/.test( oValue ) ){
+                if( /^\d{4}$/.test( oValue ) ){
                     // oValue 는 숫자 4개로 구성되어 있음
 
                 } else {
