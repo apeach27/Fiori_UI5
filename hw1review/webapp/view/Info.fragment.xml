@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form">
+
+    <Dialog id="idDialog" title="항공편 정보">
+        <content>
+            <f:SimpleForm layout="ResponsiveLayout">
+                <!-- 신규라인 -->
+                <Label text="항공사" /><Text text="{Carrid}" />
+
+                <!-- 신규라인 (Label이 등장할 때 마다 Enter를 누르듯 신규라인 취급) -->
+                <Label text="항공편번호" /><Text text="{Connid}" />
+                <Label text="비행시간" /><Text text="{Fltime}" />
+                <Label text="출발시간" /><Text text="{Deptime}" />
+                <Label text="도착시간" /><Text text="{Arrtime}" />
+                <Label text="비행거리" />
+                <ObjectNumber 
+                    number="{Distance}"
+                    unit="{Distid}"
+                /> 
+                <!-- <ObjectNumber 
+                number="{
+                    parts: [ {path: 'Distance'}, {path: 'Distid'}],
+                    type: 'sap.ui.model.type.Unit'
+                }" 
+                unit="{Distid}" /> -->
+                
+            </f:SimpleForm>
+        </content>
+
+        <beginButton>
+            <Button text="닫기" press="onClosePress" />
+        </beginButton>
+        <buttons></buttons>
+        <endButton></endButton>
+    </Dialog>
+
+</core:FragmentDefinition>

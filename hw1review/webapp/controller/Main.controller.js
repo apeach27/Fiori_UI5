@@ -1,11 +1,12 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    "sap/ui/core/Fragment"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, MessageToast) {
+    function (Controller, MessageToast, Fragment) {
         "use strict";
 
         return Controller.extend("sync.e05.hw1review.controller.Main", {
@@ -24,6 +25,34 @@ sap.ui.define([
 
                 MessageToast.show("선택하신 라인은 항공사: "+carrid+", 항공편: "+connid+" 의 정보입니다.");
 
+
+                // Fragment 의 Dialog 오픈
+                let oView = this.getView();
+                let oDialog = oView.byId("idDialog");
+                // oDialog = this.byid("idDialog");
+
+                // 선택한 라인의 경로를 현재 화면에 지정해줌
+                let currentModelPath = oContext.getPath();
+                oView.bindElement(currentModelPath);
+
+                if(oDialog) {
+                    // Main 화면에 있을 때
+                    oDialog.opne();
+
+                } else{
+                    // Main 화면에 없을 때
+                    Fragment.load({
+                        id: oView.getId(),
+                        name: "sync.e05.hw1review.view.Info",
+                        type: "XML",
+                        controller: this
+                    }).then(
+                        function(oDialog){
+                            oView.addDependent(oDialog);
+                            oDialog.open();
+                        }
+                    );
+                }
             }
         });
     });
