@@ -9,22 +9,22 @@
             selectionChange="onSelectionChange">
                 <columns>
                     <Column>
-                        <Label text="항공사"></Label>
+                        <Label text="{i18n>labelCarrid}"></Label>
                     </Column>
                     <Column>
-                        <Label text="항공편 번호"></Label>
+                        <Label text="{i18n>labelConnid}"></Label>
                     </Column>
                     <Column>
-                        <Label text="출발국가"></Label>
+                        <Label text="{i18n>labelCountryfr}"></Label>
                     </Column>
                     <Column>
-                        <Label text="출발도시"></Label>
+                        <Label text="{i18n>labelCityfrom}"></Label>
                     </Column>
                     <Column>
-                        <Label text="도착국가"></Label>
+                        <Label text="{i18n>labelCountryto}"></Label>
                     </Column>
                     <Column>
-                        <Label text="도착도시"></Label>
+                        <Label text="{i18n>labelCityto}"></Label>
                     </Column>
                 </columns>
 
