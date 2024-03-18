@@ -10,3 +10,4 @@ test.txt
 
 ## 폴더 무시
 test/
+node_modules/
