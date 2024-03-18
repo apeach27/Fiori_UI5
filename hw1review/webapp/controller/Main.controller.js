@@ -53,6 +53,14 @@ sap.ui.define([
                         }
                     );
                 }
+            },
+            
+            // 닫기버튼 구현
+            onClosePress: function(){
+                let oDialog = this.byId("idDialog");
+                if(oDialog){
+                    oDialog.close(); //  팝업창 닫기
+                }
             }
         });
     });
