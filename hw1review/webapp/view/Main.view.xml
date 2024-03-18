@@ -3,7 +3,10 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
         <content>
-            <Table id="idTable" items="{/ConnSet}">
+            <Table id="idTable" 
+            items="{/ConnSet}" 
+            mode="SingleSelectMaster" 
+            selectionChange="onSelectionChange">
                 <columns>
                     <Column>
                         <Label text="항공사"></Label>

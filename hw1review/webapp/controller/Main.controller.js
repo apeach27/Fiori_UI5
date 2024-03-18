@@ -10,6 +10,12 @@ sap.ui.define([
         return Controller.extend("sync.e05.hw1review.controller.Main", {
             onInit: function () {
 
+            },
+            onSelectionChange: function( oEvent ){
+                let listItem = oEvent.getParameter("listItem")
+                alert(listItem.getBindingContext())
+                let context = listItem.getBindingContext()
+                alert(context.getProperty("Carrid"));
             }
         });
     });
