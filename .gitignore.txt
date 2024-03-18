@@ -8,6 +8,18 @@ test.txt
 *.zi
 *.txt
 
+### VisualStudioCode ###
+
+.vscode/*      # Maybe .vscode/**/* instead - see comments
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+**/.history
+
 ## 폴더 무시
 test/
 node_modules/
