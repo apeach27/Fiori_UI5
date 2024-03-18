@@ -37,7 +37,7 @@ sap.ui.define([
 
                 if(oDialog) {
                     // Main 화면에 있을 때
-                    oDialog.opne();
+                    oDialog.open();
 
                 } else{
                     // Main 화면에 없을 때
