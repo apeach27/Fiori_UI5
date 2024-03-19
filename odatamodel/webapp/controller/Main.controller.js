@@ -16,7 +16,22 @@ sap.ui.define([
                 let oNewModel = new JSONModel(data);
                 let oView = this.getView();
                 oView.setModel(oNewModel, "new");
-                
+
+                // 통화코드 콤보박스를 위해 추가
+                let viewData = {
+                    Currency: [
+                        { key: 'KRW', name: '원화'},
+                        { key: 'USD', name: '달러'}
+                    ]
+                };
+                let oViewModel = new JSONModel(viewData);
+                oView.setModel(oViewModel,"view");
+            },
+
+            onCurrencyChange: function ( oEvent ) {
+                let oItem = oEvent.getParameter("selectedItem");
+                let oNewModel = this.getView().getModel("new");
+                oNewModel.setProperty("/Currcode", oItem.getKey());
             },
 
             onCreate: function(){
@@ -58,6 +73,12 @@ sap.ui.define([
                     Currcode: "",
                     Url: ""
                 })
+
+                // ComboBox 선택된 내용을 지우는 과정
+                let oComboBox = this.byId("idComboBox");
+                oComboBox.setSelectedKey("");
+                oComboBox.setSelectedItem("");
+                oComboBox.setSelectedItemId("");
             },
 
             onSaveConfirm: function(){
@@ -76,12 +97,10 @@ sap.ui.define([
                     newData,
                     {
                         success:function(oData, oResponse){
-                            debugger;
                             sap.m.MessageToast.show(oData.Carrid + "항공사가 생성되었습니다.");
                         },
 
                         error: function(oError){
-                            debugger;
                             sap.m.MessageBox.error("생성 중 오류가 발생했습니다.");
                         }
                     }
