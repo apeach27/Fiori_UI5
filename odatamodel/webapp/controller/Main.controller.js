@@ -107,6 +107,30 @@ sap.ui.define([
 
                 );
 
+            },
+
+            onDelete: function(oEvent){
+                // debugger;
+                // oEvent의 getSource()는 이벤트가 발생한
+                // 오브젝트를 의미함
+                let oButton = oEvent.getSource();
+                let oContext = oButton.getBindingContext();
+                let path = oContext.getPath();
+
+                let oView = this.getView();
+                let oModel = oView.getModel();
+
+                // HTTP Method 에서 Delete 에 해당하는 명령
+                oModel.remove(
+                    path, {
+                    success: function(){
+                        sap.m.MessageToast.show("항공사 삭제 완료")
+            
+                        },
+                    error: function(oError){
+                        sap.m.MessageToast.error("삭제 중 오류 발생");
+                    }
+                });
             }
 
         });
