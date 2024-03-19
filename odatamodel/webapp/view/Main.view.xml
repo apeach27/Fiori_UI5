@@ -3,6 +3,12 @@
     xmlns="sap.m"
     xmlns:t="sap.ui.table">
     <Page id="page" title="{i18n>title}">
+        <Toolbar>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button text="생성" press="onCreate" type="Accept" />
+            </OverflowToolbar>
+        </Toolbar>
         <content>
             <t:Table visibleRowCount="10" rows="{/CarrierSet}" enableBusyIndicator="true">
 
