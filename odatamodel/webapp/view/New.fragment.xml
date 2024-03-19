@@ -27,7 +27,7 @@ xmlns:l="sap.ui.layout"
                     selectionChange="onCurrencyChange"
                     >
                     <items>
-                        <c:Item key="{view>key}" text="{view>name}" />
+                        <c:Item key="{view>key}" text="{view>name} {view>key}" />
                     </items>
                     <layoutData>
                         <l:GridData span="S3" />
