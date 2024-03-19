@@ -11,13 +11,6 @@ sap.ui.define([
 
         return Controller.extend("sync.e05.odatamodel.controller.Main", {
 
-            initAirlineData: {
-                Carrid: "",
-                Carrname: "",
-                Currcode: "",
-                Url: "",
-            },
-
             onInit: function () {
                 let data = this.initAirlineData;
                 let oNewModel = new JSONModel(data);
@@ -40,11 +33,12 @@ sap.ui.define([
                         type:"XML",
                         controller: this               // Main Controller를  공유
                     
-                    }).then(
+                    }).then( 
                         function(oDialog){
-                        oView.addDependent(oDialog); 
-                        oDialog.open();               // View 의 Model 을 공유
-                    });
+                            oView.addDependent(oDialog); 
+                            oDialog.open();               // View 의 Model 을 공유
+                        }
+                    );
                 }
             },
 
@@ -57,8 +51,43 @@ sap.ui.define([
 
                 // 빈값만 있는 정보를 새로운 JSONModel을 만들어서 기존 new모델을 교체함
                 // --> 데이터 초기화
-                let oNewModel = new JSONModel(this.initAirlineData);
-                this.getView().setModel(oNewModel, "new");
+                let oNewModel = this.getView().getModel("new");
+                oNewModel.setData({
+                    Carrid: "",
+                    Carrname: "",
+                    Currcode: "",
+                    Url: ""
+                })
+            },
+
+            onSaveConfirm: function(){
+                let oView = this.getView();
+                let oNewModel = oView.getModel("new");  // JSON Model
+                let oModel = oView.getModel();          // oData Model
+            
+                let newData = oNewModel.getData();
+                // newData = { Carrid: "~~", Carrname: "~~", ... }
+
+                debugger;
+
+                oModel.create(
+                    // 경로, 신규데이터, 결과처리
+                    "/CarrierSet",
+                    newData,
+                    {
+                        success:function(oData, oResponse){
+                            debugger;
+                            sap.m.MessageToast.show(oData.Carrid + "항공사가 생성되었습니다.");
+                        },
+
+                        error: function(oError){
+                            debugger;
+                            sap.m.MessageBox.error("생성 중 오류가 발생했습니다.");
+                        }
+                    }
+
+                );
+
             }
 
         });
