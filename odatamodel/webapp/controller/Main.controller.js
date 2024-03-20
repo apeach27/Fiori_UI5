@@ -22,8 +22,11 @@ sap.ui.define([
                     Currency: [
                         { key: 'KRW', name: '원화'},
                         { key: 'USD', name: '달러'}
-                    ]
+                    ],
+
+                    CreateMode: true
                 };
+
                 let oViewModel = new JSONModel(viewData);
                 oView.setModel(oViewModel,"view");
             },
@@ -35,6 +38,43 @@ sap.ui.define([
             },
 
             onCreate: function(){
+                // 아무것도 입력되지 않은 상태의 input 팝업창
+                let data = {
+                    Carrid: "",
+                    Carrname: "",
+                    Currcode: "",
+                    Url: ""
+                };
+
+                let oNewModel = new JSONModel(data);
+                this.getView().setModel(oNewModel, "new");
+
+                let oViewModel = this.getView().getModel("view");
+                oViewModel.setProperty("/CreateMode", true);
+
+                this.openDialog();
+
+            },
+
+            onUpdate: function(oEvent){
+                // 선택한 라인의 데이터가 자동으로 입력되어있는 상태의 팝업창
+                let oButton = oEvent.getSource();
+                let oContext = oButton.getBindingContext();
+                let path = oContext.getPath(); // 내가 선택한 라인의 모델 경로 /CarrierSet('AA')
+                let data = oContext.getProperty(); 
+
+                let oNewModel = new JSONModel(data);
+                this.getView().setModel(oNewModel, "new");
+
+                let oViewModel = this.getView().getModel("view");
+                oViewModel.setProperty("/CreateMode", false);
+
+                // 항공사 ID는 수정 불가능 해야함
+                this.openDialog();
+
+            },
+
+            openDialog: function(){
                 let oView = this.getView();
                 let oDialog = oView.byId("idNewDialog");
 
@@ -91,22 +131,46 @@ sap.ui.define([
 
                 debugger;
 
-                oModel.create(
-                    // 경로, 신규데이터, 결과처리
-                    "/CarrierSet",
-                    newData,
-                    {
-                        success:function(oData, oResponse){
-                            sap.m.MessageToast.show(oData.Carrid + "항공사가 생성되었습니다.");
-                        },
+                let oViewModel = oView.getModel("view");
+                let createMode = oViewModel.getProperty("/CreateMode"); // <- true(생성), false(수정)
 
-                        error: function(oError){
-                            sap.m.MessageBox.error("생성 중 오류가 발생했습니다.");
+                if(createMode){
+                    // 생성
+                    // oModel.create(경로, 신규데이터, 결과처리)
+                    oModel.create(
+                        // 경로, 신규데이터, 결과처리
+                        "/CarrierSet",
+                        newData,
+                        {
+                            success:function(oData, oResponse){
+                                sap.m.MessageToast.show(oData.Carrid + "항공사가 생성되었습니다.");
+                                oModel.refresh();
+                            },
+    
+                            error: function(oError){
+                                sap.m.MessageBox.error("생성 중 오류가 발생했습니다.");
+                            }
                         }
-                    }
+                    );
 
-                );
-                
+                } else {
+                    // 수정
+                    // oModel.update(경로, 변경될 데이터, 결과처리);
+                    oModel.update(
+                        // /CarrierSet('AA') 와 같이 만들기 위해 문자열 사이에 Carrid 를 합치는 작업
+                        "/CarrierSet('"+ newData.Carrid +"')",
+                        newData,
+                        {
+                            success: function(){
+                                sap.m.MessageToast(newData.Carrid + "항공사 수정 성공");
+                            },
+                            error: function(oError){
+                                sap.m.MessageBox.error("수정 중 오류 발생");
+                            }
+                        }
+                    );    
+                }
+
                 //생성을 위한 팝업창 닫기
                 this.onSaveCancel();
 
@@ -134,6 +198,12 @@ sap.ui.define([
                         sap.m.MessageToast.error("삭제 중 오류 발생");
                     }
                 });
+            },
+            
+            // 새로고침 구현
+            onRefresh: function(){
+                let oModel = this.getView().getModel();
+                oModel.refresh();
             }
 
         });
