@@ -106,6 +106,9 @@ sap.ui.define([
                     }
 
                 );
+                
+                //생성을 위한 팝업창 닫기
+                this.onSaveCancel();
 
             },
 
