@@ -24,6 +24,18 @@ sap.ui.define([
                 let oViewModel = new JSONModel(data);
                 this.getView().setModel(oViewModel, "view");
 
+            },
+
+            onDelete: function(){
+                let oTable =  this.byId("idTable"); // View 에서 id 속성 값이 idTable 인 항목을 찾음
+
+                let aIndex = oTable.getSelectedIndices();
+
+                if (!aIndex || aIndex.length == 0){ // 선택된 항목이 없을 때
+                    sap.m.MessageBox.information("삭제할 라인을 선택하세요");
+                    return; // 메세지 출력 후 중단
+
+                }
             }
         });
     });

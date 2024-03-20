@@ -5,7 +5,7 @@
     xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}">
         <content>
-            <t:Table rows="{/CarrierSet}">
+            <t:Table id="idTable" rows="{/CarrierSet}">
 
                 <t:columns>
                     <t:Column>
