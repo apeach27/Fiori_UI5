@@ -5,7 +5,7 @@
     xmlns:l="sap.ui.layout">
     <Page id="page" title="{i18n>title}">
         <content>
-            <t:Table visibleRowCount="10" rows="{/CarrierSet}" enableBusyIndicator="false">
+            <t:Table visibleRowCount="10" rows="{/CarrierSet}" enableBusyIndicator="true">
 
                 <t:extension>
                     <Toolbar >
@@ -55,7 +55,7 @@
                 </t:columns>
 
                 <t:noData>
-                    <!-- <BusyIndicator class="sapUiMediumMargin"/> -->
+                    <BusyIndicator class="sapUiMediumMargin"/>
                 </t:noData>
             </t:Table>
             

@@ -162,7 +162,7 @@ sap.ui.define([
                         newData,
                         {
                             success: function(){
-                                sap.m.MessageToast(newData.Carrid + "항공사 수정 성공");
+                                sap.m.MessageToast.show(newData.Carrid + "항공사 수정 성공");
                             },
                             error: function(oError){
                                 sap.m.MessageBox.error("수정 중 오류 발생");
