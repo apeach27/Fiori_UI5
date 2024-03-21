@@ -13,6 +13,7 @@
                         <Button icon="sap-icon://edit" press="onEdit" />
                     </Toolbar>
                 </t:extension>
+
                 <t:columns>
                     <!-- 컬럼 제목과 데이터 -->
                     <t:Column width="7rem" hAlign="Center">
@@ -22,20 +23,22 @@
                         </t:template>
                     </t:Column>
 
-                    <t:Column>
+                    <t:Column visible="{view>/EditMode}">
                         <Label design="Bold" text="{i18n>labelCarrname}" />
                         <t:template>
                             <Input value="{Carrname}" placeholder="항공사 이름을 입력하세요" valueLiveUpdate="true"/>
                         </t:template>
                     </t:Column>
 
-                    <t:Column>
+                    <t:Column visible="{= !${view>/EditMode} }">
                         <Label design="Bold" text="{i18n>labelCarrname}" />
                         <t:template>
-                            <Input value="{Carrname}" placeholder="항공사 이름을 입력하세요" valueLiveUpdate="true" editable="false"/>
+                            <!-- <Input value="{Carrname}" placeholder="항공사 이름을 입력하세요" valueLiveUpdate="true" editable="false"/> -->
+                            <Text text="{Carrname}" />
                         </t:template>
                     </t:Column>
                 </t:columns>
+
             </t:Table>
 
         </content>
