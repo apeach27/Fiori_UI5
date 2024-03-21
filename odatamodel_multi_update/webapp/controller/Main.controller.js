@@ -23,6 +23,7 @@ sap.ui.define([
             onEdit: function(){
                 let oViewModel =  this.getView().getModel("view");
                 oViewModel.setProperty("/EditMode", true);
+
             },
 
             onCancel: function(){
@@ -30,7 +31,7 @@ sap.ui.define([
                 oViewModel.setProperty("/EditMode", false);
 
                 let oModel = this.getView().getModel();
-                oModel.resetChanges();
+                oModel.resetChanges(); // 원본 데이터로 복원
             }
         });
     });

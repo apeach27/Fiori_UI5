@@ -10,7 +10,10 @@
                     <Toolbar>
                         <ToolbarSpacer />
                         <Button icon="sap-icon://refresh" press="onRefresh" />
-                        <Button icon="sap-icon://edit" press="onEdit" />
+                        <Button icon="sap-icon://edit" 
+                                press="onEdit"
+                                visible="{= !${view>/EditMode} }"
+                        />
                     </Toolbar>
                 </t:extension>
 
@@ -44,7 +47,7 @@
         </content>
 
         <footer>
-            <OverflowToolbar >
+            <OverflowToolbar visible="{view>/EditMode}">
                 <ToolbarSpacer />
                 <Button icon="sap-icon://save" press="onSave" type="Accept" />
                 <Button icon="sap-icon://cancel" press="onCancel" type="Reject" />
