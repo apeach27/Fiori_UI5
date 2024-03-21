@@ -9,6 +9,7 @@
                     <!-- Toolbar -->
                     <Toolbar>
                         <ToolbarSpacer />
+                        <Button icon="sap-icon://refresh" press="onRefresh" />
                         <Button icon="sap-icon://edit" press="onEdit" />
                     </Toolbar>
                 </t:extension>
@@ -38,5 +39,13 @@
             </t:Table>
 
         </content>
+
+        <footer>
+            <OverflowToolbar >
+                <ToolbarSpacer />
+                <Button icon="sap-icon://save" press="onSave" type="Accept" />
+                <Button icon="sap-icon://cancel" press="onCancel" type="Reject" />
+            </OverflowToolbar>
+        </footer>
     </Page>
 </mvc:View>
