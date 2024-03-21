@@ -69,6 +69,10 @@ sap.ui.define([
 
                 oModel.setData(data)
 
+            },
+
+            onValidError: function(oEvent){
+                oEvent.getSource().setValueState("Error");
             }
         });
     });
