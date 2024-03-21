@@ -33,7 +33,11 @@
                     <Label text="숫자2"/>
                     <Input value="{
                         path: '/value2',
-                        type: 'sap.ui.model.type.Integer'
+                        type: 'sap.ui.model.type.Integer',
+                        constraints: {
+                            minimum: 0,
+                            maximum: 100
+                        }
                     }" type="Number" />
                     
                     <Label text="결과"/>
