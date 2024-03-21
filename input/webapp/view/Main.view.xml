@@ -2,6 +2,14 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content>
+            <!-- 값을 입력받기 위해서는 sap.m.Input 을 사용함 -->
+            <Input id="idInput1" value="" type="Number" />
+            <Input id="idInput2" value="" type="Number" />
+
+            <Text id="idText" text="계산 결과가 출력될 예정" />
+
+            <Button text="더하기" press="onAdd" />
+        </content>
     </Page>
 </mvc:View>
