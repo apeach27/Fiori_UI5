@@ -17,10 +17,15 @@ sap.ui.define([
                 };
 
                 let oModel = new JSONModel(data);
+                let oView = this.getView();
+                oView.setModel(oModel, "view");
 
                 // 기본 모델로 사용하고자 이름을 주지 않음
                 this.getView().setModel(oModel);
 
+                // 화면에 오류가 발생한 부분을 메세지와 함께 표시해줌
+                let oMsgManager = sap.ui.getCore().getMessageManager();
+                oMsgManager.registerObject(this.getView(), true);
             },
 
             onAdd: function(){
