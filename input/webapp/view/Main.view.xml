@@ -25,10 +25,16 @@
             <Panel headerText="JSON Model로 접근하여 값을 읽고 쓰기 해보기">
                 <f:SimpleForm layout="ResponsiveLayout">
                     <Label text="숫자1"/>
-                    <Input value="{/value1}" type="Number" />
+                    <Input value="{
+                        path: '/value1',
+                        type: 'sap.ui.model.type.Integer'
+                    }" type="Number" />
 
                     <Label text="숫자2"/>
-                    <Input value="{/value2}" type="Number" />
+                    <Input value="{
+                        path: '/value2',
+                        type: 'sap.ui.model.type.Integer'
+                    }" type="Number" />
                     
                     <Label text="결과"/>
                     <Input value="{/result}" editable="false" />
