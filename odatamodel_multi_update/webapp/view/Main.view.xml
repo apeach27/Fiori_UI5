@@ -14,10 +14,17 @@
                 </t:extension>
                 <t:columns>
                     <!-- 컬럼 제목과 데이터 -->
-                    <t:Column>
-                        <Label text="{i18n>labelCarrid}" />
+                    <t:Column width="7rem" hAlign="Center">
+                        <Label design="Bold" text="{i18n>labelCarrid}" />
                         <t:template>
                             <ObjectIdentifier title="{Carrid}"/>
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column>
+                        <Label design="Bold" text="{i18n>labelCarrname}" />
+                        <t:template>
+                            <Input value="{Carrname}" placeholder="항공사 이름을 입력하세요"/>
                         </t:template>
                     </t:Column>
                 </t:columns>
