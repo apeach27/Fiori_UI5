@@ -29,7 +29,8 @@
                     <t:Column visible="{view>/EditMode}">
                         <Label design="Bold" text="{i18n>labelCarrname}" />
                         <t:template>
-                            <Input value="{Carrname}" placeholder="항공사 이름을 입력하세요" valueLiveUpdate="true"/>
+                            <Input value="{Carrname}" placeholder="항공사 이름을 입력하세요" valueLiveUpdate="true"
+                            maxLength="20" />
                         </t:template>
                     </t:Column>
 
