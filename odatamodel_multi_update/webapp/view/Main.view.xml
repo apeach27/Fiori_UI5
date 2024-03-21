@@ -24,7 +24,14 @@
                     <t:Column>
                         <Label design="Bold" text="{i18n>labelCarrname}" />
                         <t:template>
-                            <Input value="{Carrname}" placeholder="항공사 이름을 입력하세요"/>
+                            <Input value="{Carrname}" placeholder="항공사 이름을 입력하세요" valueLiveUpdate="true"/>
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column>
+                        <Label design="Bold" text="{i18n>labelCarrname}" />
+                        <t:template>
+                            <Input value="{Carrname}" placeholder="항공사 이름을 입력하세요" valueLiveUpdate="true" editable="false"/>
                         </t:template>
                     </t:Column>
                 </t:columns>
