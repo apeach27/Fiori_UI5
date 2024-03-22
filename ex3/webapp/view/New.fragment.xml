@@ -39,7 +39,7 @@ xmlns:f="sap.ui.layout.form">
                 </f:SimpleForm>
             </Panel>
 
-            <Panel headerText="이동경로">
+            <Panel headerText="시간 및 거리">
                 <f:SimpleForm layout="ResponsiveGridLayout">
                     <Label text="{i18n>labelDeptime}"/>
                     <TimePicker value="{
