@@ -6,15 +6,15 @@
     xmlns:l="sap.ui.layout">
 
     <Page id="page" title="{i18n>title}">
+
+        <Title text="항공편 정보" textAlign="Center" />
         <Toolbar>
-            <OverflowToolbar>
-                <ToolbarSpacer />
-                <Button text="생성" press="onCreate" type="Accept" />
-            </OverflowToolbar>
+            <Button icon="sap-icon://save" text="신규생성" press="onCreate" type="Accept" />
+            <Button icon="sap-icon://cancel" text="삭제" press="onDelete" type="Reject" />
         </Toolbar>
+
         <content>
-            <Title text="항공편 정보" />
-            <t:Table visibleRowCount="15" rows="{/ConnectionSet}" enableBusyIndicator="true">
+            <t:Table id="idTable" visibleRowCount="15" rows="{/ConnectionSet}" enableBusyIndicator="true">
                 
                 <t:columns>
                     <!-- 컬럼 제목과 데이터 -->
@@ -59,7 +59,7 @@
                     </t:Column>
                 </t:columns>
             </t:Table>
-
         </content>
+
     </Page>
 </mvc:View>
