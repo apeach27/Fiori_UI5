@@ -8,8 +8,15 @@
 
         <Title text="항공편 정보" textAlign="Center" />
         <Toolbar>
-            <Button icon="sap-icon://save" text="신규생성" press="onCreate" type="Accept" />
-            <Button icon="sap-icon://cancel" text="삭제" press="onDelete" type="Reject" />
+            <Button icon="sap-icon://edit" text="수정모드전환" press="onEdit" visible="{= !${view>/EditMode} }" />
+            <Button icon="sap-icon://edit" 
+                text="수정모드취소"
+                press="onEdit"
+                visible="{view>/EditMode}"
+            />
+
+            <Button text="저장" icon="sap-icon://save" press="onSaveConfirm" visible="{view>/EditMode}" />
+
         </Toolbar>
 
         <content>
