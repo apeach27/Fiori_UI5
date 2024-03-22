@@ -11,17 +11,14 @@
             <Button icon="sap-icon://edit" text="수정모드전환" press="onEdit" visible="{= !${view>/EditMode} }" />
             <Button icon="sap-icon://edit" 
                 text="수정모드취소"
-                press="onEdit"
-                visible="{view>/EditMode}"
-            />
-
-            <Button text="저장" icon="sap-icon://save" press="onSaveConfirm" visible="{view>/EditMode}" />
+                press="onCancel"
+                visible="{view>/EditMode}"/>
+            <Button text="저장" icon="sap-icon://save" press="onSave" visible="{view>/EditMode}" />
 
         </Toolbar>
 
         <content>
             <t:Table id="idTable" visibleRowCount="15" rows="{/ConnectionSet}" enableBusyIndicator="true">
-                
                 <t:columns>
                     <!-- 컬럼 제목과 데이터 -->
                     <t:Column width="7rem" hAlign="Center">
@@ -30,39 +27,67 @@
                             <ObjectIdentifier title="{Carrid}"/>
                         </t:template>
                     </t:Column>
-                    <t:Column width="7rem" hAlign="Center">
+
+                    <t:Column hAlign="Center">
                         <Label design="Bold" text="{i18n>labelConnid}" />
                         <t:template>
-                            <ObjectIdentifier title="{Connid}"/>
+                            <HBox>
+                                <Input value="{Connid}" placeholder="항공사 번호를 입력하세요" valueLiveUpdate="true"
+                                  visible="{view>/EditMode}" />
+
+                                <Text text="{Connid}" visible="{= !${view>/EditMode} }" />
+                            </HBox>
                         </t:template>
                     </t:Column>
-                    <t:Column>
+
+                    <t:Column hAlign="Center">
                         <Label design="Bold" text="{i18n>labelCityfrom}" />
                         <t:template>
-                            <Text text="{Cityfrom}"/>
+                            <HBox>
+                                <Input value="{Cityfrom}" placeholder="출발도시를 입력하세요" valueLiveUpdate="true"
+                                 visible="{view>/EditMode}" />
+
+                                <Text text="{Cityfrom}" visible="{= !${view>/EditMode} }" />
+                            </HBox>
                         </t:template>
                     </t:Column>
-                    <t:Column>
+
+                    <t:Column hAlign="Center">
                         <Label design="Bold" text="{i18n>labelCityto}" />
                         <t:template>
-                            <Text text="{Cityto}"/>
+                            <HBox>
+                                <Input value="{Cityto}" placeholder="도착도시를 입력하세요" valueLiveUpdate="true"
+                                 visible="{view>/EditMode}" />
+
+                                <Text text="{Cityto}" visible="{= !${view>/EditMode} }" />
+                            </HBox>
                         </t:template>
                     </t:Column>
-                    <t:Column>
+
+                    <t:Column hAlign="Center">
                         <Label design="Bold" text="{i18n>labelFltime}" />
                         <t:template>
-                            <Text text="{Deptime} ~ {Arrtime}"/>
+                            <HBox>
+                                <Input value="{Deptime}" placeholder="비행시간을 입력하세요" valueLiveUpdate="true"
+                                 visible="{view>/EditMode}" />
+
+                                <Text text="{Deptime}" visible="{= !${view>/EditMode} }" />
+                            </HBox>
                         </t:template>
                     </t:Column>
-                    <t:Column>
+
+                    <t:Column hAlign="Center">
                         <Label design="Bold" text="{i18n>labelDistance}" />
                         <t:template>
-                            <ObjectNumber 
-                                number="{Distance}"
-                                unit="{Distid}"
-                            /> 
+                            <HBox>
+                                <Input value="{Distance}" placeholder="비행거리를 입력하세요" valueLiveUpdate="true"
+                                 visible="{view>/EditMode}" />
+
+                                <Text text="{Distance}" visible="{= !${view>/EditMode} }" />
+                            </HBox>
                         </t:template>
                     </t:Column>
+
                 </t:columns>
             </t:Table>
         </content>
