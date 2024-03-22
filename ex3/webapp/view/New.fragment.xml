@@ -1,5 +1,81 @@
 <c:FragmentDefinition
-	xmlns="sap.m"
-	xmlns:c="sap.ui.core"
->
+xmlns="sap.m"
+xmlns:c="sap.ui.core"
+xmlns:f="sap.ui.layout.form">
+
+    <Dialog id="idNewDialog" title="항공편 정보 신규생성" icon="sap-icon://create">
+
+        <content>
+            <Panel headerText="항공사 정보">
+                <f:SimpleForm layout="ResponsiveGridLayout">
+                    <Label text="{i18n>labelCarrid}" />
+                    <Input value="{new>/Carrid}" required="true" />
+
+                    <Label text="{i18n>labelConnid}"/>
+                    <Input value="{new>/Connid}" required="true" />
+                </f:SimpleForm>
+            </Panel>
+
+            <Panel headerText="이동경로">
+                <f:SimpleForm layout="ResponsiveGridLayout">
+
+                    <Label text="{i18n>labelCountryfr}" />
+                    <Input value="{new>/Countryfr}" />
+
+                    <Label text="{i18n>labelCityfrom}" />
+                    <Input value="{new>/Cityfrom}" />
+
+                    <Label text="{i18n>labelAirpfrom}" />
+                    <Input value="{new>/Cityfrom}" required="true" />
+
+                    <Label text="{i18n>labelCountryto}"/>
+                    <Input value="{new>/Countryto}" />
+
+                    <Label text="{i18n>labelCityto}"/>
+                    <Input value="{new>/Countryto}" />
+
+                    <Label text="{i18n>labelAirpto}"/>
+                    <Input value="{new>/Airpto}" />
+                </f:SimpleForm>
+            </Panel>
+
+            <Panel headerText="이동경로">
+                <f:SimpleForm layout="ResponsiveGridLayout">
+                    <Label text="{i18n>labelDeptime}"/>
+                    <TimePicker value="{
+                        path: 'Deptime',
+                        type: 'sap.ui.model.odata.type.Time',
+                        formatOptions:{
+                            pattern: 'HH:mm:ss'
+                        }
+                    }"/>
+
+                    <Label text="{i18n>labelArrtime}"/>
+                    <TimePicker value="{
+                        path: 'Arrtime',
+                        type: 'sap.ui.model.odata.type.Time',
+                        formatOptions:{
+                            pattern: 'HH:mm:ss'
+                        }
+                    }"/>
+
+                    <Label text="{i18n>labelDistance}"/>
+                    <Input value="{new>/Distance}" width="50%" />
+                    <HBox width="50%">
+                        <ComboBox selectedKey="{Distid}" placeholder="거리단위">
+                            <c:Item text="킬로미터" />
+                            <c:Item text="마일" />
+                        </ComboBox>
+                    </HBox>
+                </f:SimpleForm>
+            </Panel>
+
+        </content>
+
+        <buttons>
+            <Button text="저장" icon="sap-icon://save" press="onSaveConfirm" />
+            <Button text="취소" icon="sap-icon://cancel" press="onSaveCancel" />
+        </buttons>
+    </Dialog>
+
 </c:FragmentDefinition>
