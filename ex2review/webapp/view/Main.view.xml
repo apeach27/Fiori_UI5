@@ -5,9 +5,15 @@
     <Page id="page" title="{i18n>title}">
         <content>
             <t:Table 
-                rows="{/FlightSet}"
+                rows="{
+                    path:'/FlightSet',
+                    parameters: {
+                        expand:'toConnection'
+                    }
+                }"
                 selectionMode="Single"
                 selectionBehavior="Row"
+                rowSelectionChange="onSelection"
             >
                 <t:columns>
                     <t:Column >
