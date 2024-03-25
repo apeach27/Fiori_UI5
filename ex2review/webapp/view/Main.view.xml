@@ -1,0 +1,42 @@
+<mvc:View controllerName="sync.e05.ex2review.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <t:Table rows="{/FlightSet}">
+                <t:columns>
+                    <t:Column >
+                        <Label text="{i18n>labelCarrid}" />
+                        <t:template>
+                            <ObjectIdentifier title="{Carrid}" />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column >
+                        <Label text="{i18n>labelConnid}" />
+                        <t:template>
+                            <ObjectIdentifier title="{Connid}" />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column >
+                        <Label text="{i18n>labelFldate}" />
+                        <t:template>
+                            <ObjectIdentifier title="{
+                                path:'Fldate',
+                                type:'sap.ui.model.odata.type.DateTime',
+                                formatOptions:{
+                                    pattern:'yyyy-MM-dd'
+                                }
+                            }" />
+                        </t:template>
+                    </t:Column>
+
+                </t:columns>
+
+
+            </t:Table>
+        </content>
+    </Page>
+</mvc:View>
