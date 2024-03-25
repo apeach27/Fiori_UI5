@@ -21,6 +21,9 @@ sap.ui.define([
 
                 let oModel = new JSONModel(data);
                 this.getView().setModel(oModel);
+
+                let oMessageManager = sap.ui.getCore().getMessageManager();
+                oMessageManager.registerObject(this.getView(), true);
             }
         });
     });
