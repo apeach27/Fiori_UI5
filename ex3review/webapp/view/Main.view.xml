@@ -1,0 +1,16 @@
+<mvc:View controllerName="sync.e05.ex3review.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <t:Table rows="{/ConnectionSet}">
+                <t:columns>
+
+                
+                </t:columns>
+            </t:Table>
+
+        </content>
+    </Page>
+</mvc:View>
