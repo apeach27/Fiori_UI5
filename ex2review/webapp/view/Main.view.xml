@@ -4,7 +4,11 @@
     xmlns:t="sap.ui.table">
     <Page id="page" title="{i18n>title}">
         <content>
-            <t:Table rows="{/FlightSet}">
+            <t:Table 
+                rows="{/FlightSet}"
+                selectionMode="Single"
+                selectionBehavior="Row"
+            >
                 <t:columns>
                     <t:Column >
                         <Label text="{i18n>labelCarrid}" />
