@@ -49,6 +49,50 @@
                         </t:template>
                     </t:Column>
                     
+                    <t:Column >
+                        <Label text="{i18n>labelPlanetype}" />
+                        <t:template>
+                            <Text text="{Planetype}" />
+                        </t:template>
+                    </t:Column>
+                    
+                    <t:Column >
+                        <Label text="{i18n>labelSeatsmax}" />
+                        <t:template>
+                            <Text text="{Seatsmax}" />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column >
+                        <Label text="{i18n>labelSeatsocc}" />
+                        <t:template>
+                            <Text text="{Seatsocc}" />
+                        </t:template>
+                    </t:Column>
+                    
+                    <t:Column >
+                        <Label text="{i18n>labelSeatsfree}" />
+                        <t:template>
+                            <!-- Expression Binding: 계산, 조건 -->
+                            <Text text="{= ${Seatsmax} - ${Seatsocc} }" />
+                        </t:template>
+                    </t:Column>
+                                        
+                    <t:Column hAlign="End">
+                        <Label text="{i18n>labelPaymentsum}" />
+                        <t:template>
+                            <ObjectNumber 
+                            number="{
+                                parts: [{path: 'Paymentsum'},{path:'Currency'}],
+                                type:'sap.ui.model.type.Currency',
+                                formatOptions:{
+                                    showMeasure: false
+                                }
+                            }" 
+                            unit="{Currency}"
+                            textAlign="End" />
+                        </t:template>
+                    </t:Column>
                 </t:columns>
 
 
