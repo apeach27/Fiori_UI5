@@ -32,6 +32,8 @@ sap.ui.define([
                 let oModel = new sap.ui.model.json.JSONModel(data);
                 this.getView().setModel(oModel, "new");
 
+                
+
             },
 
             onCreate: function(){
@@ -53,10 +55,12 @@ sap.ui.define([
                         oDialog.open();
                     });
                 }
+
             },
 
             onClose: function(){
                 this.byId("idDialog").close();
+ 
             },
 
             onSave: function(){
@@ -82,7 +86,7 @@ sap.ui.define([
                     }} 
                 );
                 this.byId("idDialog").close();
-
+                this.onInit();
             }
         });
     });
