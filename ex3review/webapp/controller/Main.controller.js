@@ -20,7 +20,7 @@ sap.ui.define([
                         Countryto: "",
                         Cityto: "",
                         Airpto: "",
-                        Distance: 0,
+                        Distance: "0",
                         Distid: "KM"
                     },
                     DistanceUnit: [
@@ -57,6 +57,31 @@ sap.ui.define([
 
             onClose: function(){
                 this.byId("idDialog").close();
+            },
+
+            onSave: function(){
+                let oView = this.getView();
+                let oModel = oView.getModel(); // SAP Gateway와 연결된 Model
+                let oNewModel = oView.getModel("new"); // JSON Model 팝업의 Input 데이터를 담당
+                
+                let newData = oNewModel.getProperty("/Data");
+
+                // create(경로 (엔티티셋), 신규데이터, 결과처리 )
+                oModel.create(
+                    "/ConnectionSet",
+                    newData,
+                    {success: function( oData, oReponse ){
+                        sap.m.MessageBox.success(oData.Carrid + "," + oData.Connid + " 생성완료")
+                        debugger;
+                    }, 
+                    error: function( oError ){
+                        console.error("생성중 오류 발생");
+                        console.error(oError);
+                        sap.m.MessageBox.error( "생성중 오류 발생" );
+
+                    }} 
+                );
+            
             }
         });
     });
