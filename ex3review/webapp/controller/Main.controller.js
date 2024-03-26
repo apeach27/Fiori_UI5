@@ -87,6 +87,46 @@ sap.ui.define([
                 );
                 this.byId("idDialog").close();
                 this.onInit();
+            },
+
+            onDelete: function(){
+                sap.m.MessageToast.show("삭제 버튼 클릭");
+
+                let oView = this.getView();
+                let oTable =  oView.byId('idTable');
+
+                // 선택된 행에 대한 인덱스 정보를 
+                // 배열로 전달함
+                let aIndex = oTable.getSelectedIndices();
+
+                // aIndex가 없을 수도 있고, 한줄도 없을 수도 있음
+                if( !aIndex || aIndex.length == 0 ){
+                    sap.m.MessageBox.information("삭제할 데이터가 선택되지 않았습니다.");
+                
+                } else{
+                    sap.m.MessageBox.confirm(aIndex.length+"개의 행을 선택했습니다. 삭제할까요?", {
+                        onClose: function( oAction ){
+                            if( oAction == sap.m.MessageBox.Action.OK ){
+                                sap.m.MessageBox.show("삭제 성공");
+                                let oModel = oView.getModel();
+                                
+                                for( const vIndex of aIndex ){
+                                    let oContext = oTable.getContextByIndex(vIndex);
+                                    let path = oContext.getPath();
+                                    // sap.m.MessageBox.show(path);
+
+                                    oModel.remove(path, {});
+                                }
+
+                                oTable.clearSelection();
+
+                            } else{
+                                sap.m.MessageBox.show("삭제 취소");
+
+                            }
+                        }
+                    });
+                }
             }
         });
     });
