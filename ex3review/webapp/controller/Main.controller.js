@@ -81,7 +81,8 @@ sap.ui.define([
 
                     }} 
                 );
-            
+                this.byId("idDialog").close();
+
             }
         });
     });
