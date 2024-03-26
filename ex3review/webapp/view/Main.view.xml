@@ -52,7 +52,10 @@
                         <t:Column >
                             <Label text="{i18n>labelDistance}"/>
                                 <t:template>
-                                    <ObjectNumber number="{Distance}" unit="{Distid}" />
+                                    <ObjectNumber number="{
+                                        path: 'Distance',
+                                        type: 'sap.ui.model.odata.type.Decimal'
+                                    }" unit="{Distid}" />
                                 </t:template>
                         </t:Column>
 
