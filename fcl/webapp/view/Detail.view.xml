@@ -50,7 +50,7 @@
 				</m:VBox>
 			</m:FlexBox>
 		</headerContent>
-        
+
         <sections>
 			<ObjectPageSection title="General Information">
 				<subSections>
@@ -77,20 +77,30 @@
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="Suppliers">
+			<ObjectPageSection title="Connections">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
 							<m:Table
-								id="suppliersTable"
-								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
+								id="idConnectionTable"
+								items="{path : '/ConnectionSet'}">
 								<m:columns>
-									<m:Column/>
+									<m:Column>
+                                        <m:Text text='{i18n>labelConnid}'/> 
+                                    </m:Column>
+									<m:Column>
+                                        <m:Text text='{i18n>labelCountryfr}'/> 
+                                    </m:Column>
+									<m:Column>
+                                        <m:Text text='{i18n>labelCountryto}'/> 
+                                    </m:Column>
 								</m:columns>
 								<m:items>
 									<m:ColumnListItem type="Navigation">
 										<m:cells>
-											<m:ObjectIdentifier text="{products>text}"/>
+											<m:ObjectIdentifier text="{Connid}"/>
+											<m:ObjectAttribute text="{Countryfr}"/>
+											<m:ObjectAttribute text="{Countryto}"/>
 										</m:cells>
 									</m:ColumnListItem>
 								</m:items>
@@ -99,6 +109,8 @@
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
+
 		</sections>
+
     </ObjectPageLayout>
 </mvc:View>
