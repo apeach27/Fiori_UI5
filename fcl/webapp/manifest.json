@@ -115,7 +115,7 @@
       "viewName": "sync.eb.fcl.view.App",
       "type": "XML",
       "async": true,
-      "id": "App"
+      "id": "fcl"
     }
   }
 }
