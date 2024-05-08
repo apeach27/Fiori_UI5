@@ -1,7 +1,84 @@
 <mvc:View controllerName="sync.eb.vizframe.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:viz="sap.viz.ui5.controls" 
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:cm="sap.suite.ui.commons"
+    height="100%">
+
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content>
+            
+            <layout:FixFlex 
+                id="idFixFlex" 
+                minFlexSize="500">
+
+                <layout:fixContent>
+                    <Text text="항공사별 예약정보" />
+                </layout:fixContent>
+                <layout:fixContent >
+                    <cm:ChartContainer 
+                        class="sapUiResponsiveContentPadding"
+                        id="idChartContainer"
+                        showFullScreen="true"
+                        showLegend="true"
+                        showLegendButton="true"
+                        showZoom="true"
+                        title="차트 컨테이너 제목"
+                        autoAdjustHeight="false"
+                        
+                    >
+                        <cm:content>
+                            <cm:ChartContainerContent 
+                                icon="sap-icon://bar-chart"
+                                title="차트" 
+                            >
+                                <cm:content>
+                                    <!-- 이 안에 차트를 그려줄 예정 -->
+                                    <viz:Popover id="idPopOver"></viz:Popover>
+                                    <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                                        height='500px' width="100%" vizType='bar'>
+                                        <viz:dataset>
+                                            <viz.data:FlattenedDataset data="{/FlightSumSet}">
+                                                <viz.data:dimensions>
+                                                    <viz.data:DimensionDefinition name="항공사" value="{Carrid}" />          
+                                                    <viz.data:DimensionDefinition name="항공편" value="{Connid}" />          
+                                                </viz.data:dimensions>
+                                                <viz.data:measures>
+                                                    <viz.data:MeasureDefinition name="최대좌석수" value="{Seatsmax}" />
+                                                    <viz.data:MeasureDefinition name="예약좌석수" value="{Seatsocc}" />
+                                                </viz.data:measures>
+                                            </viz.data:FlattenedDataset>
+                                        </viz:dataset>
+
+                                        <viz:feeds>
+                                            <viz.feeds:FeedItem id='valueAxisFeed'    uid="valueAxis"    type="Measure"   values="최대좌석수,예약좌석수" />
+                                            <viz.feeds:FeedItem id="categoryAxisFeed" uid="categoryAxis" type="Dimension" values="항공사,항공편" />
+                                            <!-- <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="항공편" /> -->
+                                        </viz:feeds>
+                                    </viz:VizFrame>
+                                </cm:content>
+                            </cm:ChartContainerContent>
+                            <cm:ChartContainerContent
+                                icon="sap-icon://table-view"
+                                title="데이터"
+                            >
+                                <cm:content>
+                                    <!-- 이 안에는 차트에 사용된 데이터를 테이블로 보여줄 예정 -->
+                                    <Table>
+
+                                    </Table>
+                                </cm:content>
+                            </cm:ChartContainerContent>
+                        </cm:content>
+
+                    </cm:ChartContainer>
+                </layout:fixContent>
+
+            </layout:FixFlex>
+
+        </content>
     </Page>
 </mvc:View>
