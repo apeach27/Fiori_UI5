@@ -17,6 +17,7 @@ sap.ui.define([
                 this.oView = this.getView();
                 this._bDescendingSort = false;
                 this.oCarrierTable = this.oView.byId("idCarrierTable");
+                this.oRouter = this.getOwnerComponent().getRouter();
             },
 
             onSearch: function ( oEvent ) {
@@ -46,10 +47,20 @@ sap.ui.define([
                 oBinding.sort(oSorter);
             },
 
-            onListItemPress: function () {
-                var oFCL = this.oView.getParent().getParent();
+            onListItemPress: function ( oEvent ) {
+                // 항공사를 선택했을 때 실행
+                // var oFCL = this.oView.getParent().getParent();
     
-                oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
+                // oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
+
+                let oContext = oEvent.getSource().getBindingContext(),
+                    vcarrid = oContext.getProperty("Carrid");
+    
+                this.oRouter.navTo("detail", {
+                    layout: fioriLibrary.LayoutType.TwoColumnsMidExpanded, 
+                    carrid: vcarrid}
+                );
+                
             }
         });
     });

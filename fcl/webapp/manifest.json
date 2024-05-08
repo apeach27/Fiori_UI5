@@ -88,6 +88,46 @@
       "type": "XML",
       "async": false,
       "id": "fcl"
+    },
+    "routing": {
+      "config":{
+        "routerClass": "sap.f.routing.Router",
+				"viewType": "XML",
+				"viewPath": "sync.eb.fcl.view",
+				"controlId": "flexibleColumnLayout",
+				"transition": "slide",
+				"bypassed": {
+				},
+				"async": true
+      },
+      "routes":[
+				{
+					"pattern": ":layout:",
+					"name": "master",
+					"target": [
+						"master",
+						"detail"
+					]
+				},
+				{
+					"pattern": "detail/{carrid}/{layout}",
+					"name": "detail",
+					"target": [
+						"master",
+						"detail"
+					]
+				}
+			],
+      "targets":{
+				"master": {
+					"viewName": "Master",
+					"controlAggregation": "beginColumnPages"
+				},
+				"detail": {
+					"viewName": "Detail",
+					"controlAggregation": "midColumnPages"
+				}
+      }
     }
   }
 }
