@@ -1,10 +1,15 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
+	"sap/ui/model/Sorter",
+	"sap/m/MessageBox",
+	"sap/f/library"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller, Filter, FilterOperator, Sorter, MessageBox, fioriLibrary) {
         "use strict";
 
         return Controller.extend("sync.eb.fcl.controller.Master", {
@@ -23,7 +28,7 @@ sap.ui.define([
 
                 if (sQuery && sQuery.length > 0) {
                     // Carrname 항공사명으로 검색가능하게끔 만든다.
-                    let oFilter = new sap.ui.model.Filter("Carrname", sap.ui.model.FilterOperator.Contains, sQuery);
+                    let oFilter = new Filter("Carrname", FilterOperator.Contains, sQuery);
                     aFilter.push(oFilter);
                 }
 
@@ -36,9 +41,15 @@ sap.ui.define([
                 // 오름차순인 경우 내림차순으로 바꾸기 위해 true <=> false 로 전환한다.
                 this._bDescendingSort = !this._bDescendingSort;
                 let oBinding = this.oCarrierTable.getBinding("items"),
-                    oSorter = new sap.ui.model.Sorter("Carrname", this._bDescendingSort);
+                    oSorter = new Sorter("Carrname", this._bDescendingSort);
 
                 oBinding.sort(oSorter);
+            },
+
+            onListItemPress: function () {
+                var oFCL = this.oView.getParent().getParent();
+    
+                oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
             }
         });
     });

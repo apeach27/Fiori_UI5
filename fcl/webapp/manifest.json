@@ -82,39 +82,10 @@
         }
       ]
     },
-    "routing": {
-      "config": {
-        "routerClass": "sap.m.routing.Router",
-        "viewType": "XML",
-        "async": true,
-        "viewPath": "sync.eb.fcl.view",
-        "controlAggregation": "pages",
-        "controlId": "app",
-        "clearControlAggregation": false
-      },
-      "routes": [
-        {
-          "name": "RouteMaster",
-          "pattern": ":?query:",
-          "target": [
-            "TargetMaster"
-          ]
-        }
-      ],
-      "targets": {
-        "TargetMaster": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "Master",
-          "viewName": "Master"
-        }
-      }
-    },
     "rootView": {
       "viewName": "sync.eb.fcl.view.App",
       "type": "XML",
-      "async": true,
+      "async": false,
       "id": "fcl"
     }
   }
