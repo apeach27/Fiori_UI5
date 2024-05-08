@@ -23,7 +23,7 @@ sap.ui.define([
 
                 if (sQuery && sQuery.length > 0) {
                     // Carrname 항공사명으로 검색가능하게끔 만든다.
-                    let oFilter = new sap.ui.model.Filter("Carrname", FilterOperator.Contains, sQuery);
+                    let oFilter = new sap.ui.model.Filter("Carrname", sap.ui.model.FilterOperator.Contains, sQuery);
                     aFilter.push(oFilter);
                 }
 
