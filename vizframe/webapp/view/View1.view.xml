@@ -67,8 +67,19 @@
                             >
                                 <cm:content>
                                     <!-- 이 안에는 차트에 사용된 데이터를 테이블로 보여줄 예정 -->
-                                    <Table>
-
+                                    <Table items="{/FlightSumSet}" >
+                                        <columns>
+                                            <Column ><Label text="항공사 &amp; 항공편"/></Column>
+                                            <Column ><Label text="최대좌석수"/></Column>
+                                            <Column ><Label text="예약좌석수"/></Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem >
+                                                <ObjectIdentifier title="{Carrid}"  text="{Connid}"/>
+                                                <ObjectNumber number="{Seatsmax}" unit="석" />
+                                                <ObjectNumber number="{Seatsocc}" unit="석" />
+                                            </ColumnListItem>
+                                        </items>
                                     </Table>
                                 </cm:content>
                             </cm:ChartContainerContent>
