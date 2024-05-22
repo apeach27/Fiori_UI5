@@ -70,6 +70,15 @@
                 <Property Name="Aedat" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="레코드 최종변경일" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Aezet" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="변경시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
+            <EntityType Name="Count" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Key"/>
+                </Key>
+                <Property Name="Key" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountComplete" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountWait" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CountTotal" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
             <Association Name="Asso_Bkpf_Connection" sap:content-version="1">
                 <End Type="ZEB_FI_GW001_SRV_01.Bkpf" Multiplicity="1" Role="FromRole_Asso_Bkpf_Connection"/>
                 <End Type="ZEB_FI_GW001_SRV_01.Connection" Multiplicity="*" Role="ToRole_Asso_Bkpf_Connection"/>
@@ -89,6 +98,7 @@
             <EntityContainer Name="ZEB_FI_GW001_SRV_01_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
                 <EntitySet Name="BkpfSet" EntityType="ZEB_FI_GW001_SRV_01.Bkpf" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="ConnectionSet" EntityType="ZEB_FI_GW001_SRV_01.Connection" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CountSet" EntityType="ZEB_FI_GW001_SRV_01.Count" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
                 <AssociationSet Name="Asso_Bkpf_ConnectionSet" Association="ZEB_FI_GW001_SRV_01.Asso_Bkpf_Connection" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="BkpfSet" Role="FromRole_Asso_Bkpf_Connection"/>
                     <End EntitySet="ConnectionSet" Role="ToRole_Asso_Bkpf_Connection"/>

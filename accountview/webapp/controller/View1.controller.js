@@ -97,6 +97,16 @@ sap.ui.define([
                     // let oFCL = this.oView.getParent().getParent();
                     // oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
 
-            }
+            },
+            
+            onAfterRendering: function () {
+                var oViewModel = this.getView().getModel("viewModel");
+
+                this.getView().getModel().read("/CountSet('')", {
+                    success: function (oData, oResponse) {
+                        oViewModel.setProperty("/inProductionCount", oData.CountProgress);
+                    }
+                });
+            },
         });
     });

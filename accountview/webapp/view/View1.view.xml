@@ -27,22 +27,22 @@
                         <IconTabFilter
                         key="all"
                         showAll="true"
-                        count="{worklistView>/countAll}"
+                        count="{/CountSet('')/CountTotal}"
                         text="{i18n>FilterAll}"/>
                         <IconTabSeparator/>
                         
                         <IconTabFilter
-                            key="inStock"
+                            key="CountComplete"
                             icon="sap-icon://message-success"
                             iconColor="Positive"
-                            count="{worklistView>/inStock}"
+                            count="{/CountSet('')/CountComplete}"
                             text="{i18n>FilterInStock}"/>
-                            
+
                         <IconTabFilter
-                            key="shortage"
+                            key="CountWait"
                             icon="sap-icon://message-warning"
                             iconColor="Critical"
-                            count="{worklistView>/shortage}"
+                            count="{/CountSet('')/CountWait}"
                             text="{i18n>FilterShortage}"/>
                         <!-- <IconTabFilter
                             key="outOfStock"
