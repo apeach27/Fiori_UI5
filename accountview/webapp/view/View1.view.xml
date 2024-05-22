@@ -1,7 +1,100 @@
 <mvc:View controllerName="sync.zeb.accountview.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+    xmlns="sap.m"
+    xmlns:f="sap.f">
+
+    <f:DynamicPage id="idDynamicPage" toggleHeaderOnTitleClick="false">
+
+    <f:header>
+        <f:DynamicPageHeader>
+            <Image 
+            src="../img/logo.png" 
+            width="20rem"
+            alt="company logo" 
+            />
+            <VBox fitContainer="true">
+                <OverflowToolbar class="sapFDynamicPageAlignContent">
+                    <ToolbarSpacer/>
+                    <SearchField search=".onSearch" placeholder="전표번호 Search" liveChange=".onSearch" width="17.5rem"/>
+                    <!-- <OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd"/>
+                    <OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/> -->
+                </OverflowToolbar>
+            </VBox>
+        </f:DynamicPageHeader>
+    </f:header>
+
+    <!-- DynamicPage Content -->
+    <f:content>
+
+        <!-- sap.m.Table 활용 -->
+        <Table
+            id="idCarrierTable"
+            items="{
+                path: '/BkpfSet',
+                sorter: { path: 'BelnrD' }
+            }"
+            class="sapFDynamicPageAlignContent"
+            width="auto">
+            <columns>
+                <Column width="4em" hAlign="Center"> <!-- 전표상태 -->
+                    <Text text="{i18n>labelBstat}"/>
+                </Column>
+                <Column width="8em" hAlign="Center"> <!-- 전표번호 -->
+                    <Text text="{i18n>labelBelnrD}"/>
+                </Column>
+                <Column width="6em" hAlign="Center"> <!-- 회사코드 -->
+                    <Text text="{i18n>labelBukrs}"/>
+                </Column>
+                <Column width="6em" hAlign="Center"> <!-- 회계연도 -->
+                    <Text text="{i18n>labelGjahr}"/>
+                </Column>
+                <Column width="6em" hAlign="Center"> <!-- 사원번호 -->
+                    <Text text="{i18n>labelEmpno}"/>
+                </Column>
+                <Column width="6em" hAlign="Center"> <!-- 사원명 -->
+                    <Text text="{i18n>labelEname}"/>
+                </Column>
+                <Column width="10em" hAlign="Center"> <!-- 전기일자 -->
+                    <Text text="{i18n>labelBudat}"/>
+                </Column>
+                <Column width="auto"> <!-- 적요 -->
+                    <Text text="{i18n>labelBktxt}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem type="Navigation" press=".onListItemPress">
+                    <cells>
+                        <ObjectIdentifier title="{Bstat} " />
+                        <ObjectIdentifier title="{BelnrD}"/>
+                        <ObjectIdentifier title="{Bukrs}" />
+                        <ObjectIdentifier title="{Gjahr}" />
+                        <ObjectIdentifier text="{Empno}" />
+                        <ObjectIdentifier text="{Ename}" />
+                        <!-- <ObjectIdentifier title="{Budat}" /> -->
+                        <ObjectIdentifier text="{
+                            path:'Budat',
+                            type:'sap.ui.model.odata.type.DateTime',
+                            formatOptions:{
+                                pattern:'yyyy-MM-dd'
+                            }
+                        }" />
+                        <ObjectIdentifier text="{Bktxt}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        </f:content>
+
+        <!-- DynamicPage Footer -->
+        <f:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button type="Accept" text="Accept"/>
+                <Button type="Reject" text="Reject"/>
+            </OverflowToolbar>
+        </f:footer>
+
+    </f:DynamicPage>
+
 </mvc:View>

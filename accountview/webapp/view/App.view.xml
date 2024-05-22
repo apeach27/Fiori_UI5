@@ -1,7 +1,22 @@
 <mvc:View controllerName="sync.zeb.accountview.controller.App"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    >
     <App id="app">
+        <f:FlexibleColumnLayout
+        id="idFlexibleColumnLayout" 
+        backgroundDesign="Solid"
+        >
+            <f:beginColumnPages>
+                <mvc:XMLView id="beginView" viewName="sync.zeb.accountview.view.View1"/>
+            </f:beginColumnPages>
+
+            <f:midColumnPages>
+                <mvc:XMLView id="detailView" viewName="sync.zeb.accountview.view.Detail"/>
+            </f:midColumnPages>
+
+        </f:FlexibleColumnLayout>
     </App>
 </mvc:View>

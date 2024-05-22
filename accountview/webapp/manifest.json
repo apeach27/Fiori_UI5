@@ -84,31 +84,46 @@
     },
     "routing": {
       "config": {
-        "routerClass": "sap.m.routing.Router",
+        "routerClass": "sap.f.routing.Router",
         "viewType": "XML",
         "async": true,
         "viewPath": "sync.zeb.accountview.view",
         "controlAggregation": "pages",
-        "controlId": "app",
-        "clearControlAggregation": false
+        "controlId": "idFlexibleColumnLayout",
+        "clearControlAggregation": false,
+        "transition": "slide",
+				"bypassed": {
+				},
+				"async": true
+      
       },
-      "routes": [
-        {
-          "name": "RouteView1",
-          "pattern": ":?query:",
-          "target": [
-            "TargetView1"
-          ]
-        }
-      ],
-      "targets": {
-        "TargetView1": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "View1",
-          "viewName": "View1"
-        }
+      "routes":[
+				{
+					"pattern": ":layout:",
+					"name": "view1",
+					"target": [
+						"view1",
+						"detail"
+					]
+				},
+				{
+					"pattern": "detail/{BelnrD}/{Bukrs}/{Gjahr}/{layout}",
+					"name": "detail",
+					"target": [
+						"view1",
+						"detail"
+					]
+				}
+			],
+      "targets":{
+				"view1": {
+					"viewName": "View1",
+					"controlAggregation": "beginColumnPages"
+				},
+				"detail": {
+					"viewName": "Detail",
+					"controlAggregation": "midColumnPages"
+				}
       }
     },
     "rootView": {

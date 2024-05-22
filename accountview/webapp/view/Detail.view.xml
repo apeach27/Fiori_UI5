@@ -1,0 +1,119 @@
+<mvc:View controllerName="sync.zeb.accountview.controller.Detail"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<ObjectPageLayout
+		id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true"
+		isChildPage="true"
+		upperCaseAnchorBar="false">
+
+	<headerTitle>
+		<ObjectPageDynamicHeaderTitle>
+			<snappedHeading>
+				<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+					<m:Image
+					src="../img/logo.png"
+					width="10rem"
+					alt="company logo"
+					class="sapUiSmallMarginBottom"/>
+					<m:Title text="{Carrid} {Carrname}" wrapping="true"/>
+				</m:FlexBox>
+			</snappedHeading>
+
+		</ObjectPageDynamicHeaderTitle>
+	</headerTitle>
+
+	<headerContent>
+		<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Start" class="sapUiTinyMarginEnd">
+		<m:Image
+		src="../img/logo.png"
+		width="12rem"
+		alt="company logo"
+		class="sapUiSmallMarginBottom"/>
+		</m:FlexBox>
+		
+	</headerContent>
+
+	<sections>
+		<ObjectPageSection title="Account Item">
+			<subSections>
+				<ObjectPageSubSection>
+					<blocks>
+						<m:Table
+							id="idConnectionTable"
+							items="{toConnection}"
+							class="sapFDynamicPageAlignContent"
+							width="auto" 
+							>
+							<m:columns>
+								<m:Column width="5em" hAlign="Center">
+									<m:Text text='{i18n>labelRowNum}'/> 
+								</m:Column>
+								<m:Column width="4em" hAlign="Center">
+									<m:Text text='{i18n>labelShkzg}'/> 
+								</m:Column>
+								<m:Column width="6em" >
+									<m:Text text='{i18n>labelSaknr}'/> 
+								</m:Column>
+								<m:Column>
+									<m:Text text='{i18n>labelSchlw}'/> 
+								</m:Column>
+								<m:Column>
+									<m:Text text='{i18n>labelWrbtr}'/> 
+								</m:Column>
+								<m:Column>
+									<m:Text text='{i18n>labelDmbtr}'/> 
+								</m:Column>
+								<!-- <m:Column>
+									<m:Text text='{i18n>labelCounterp}'/> 
+								</m:Column> -->
+								<m:Column hAlign="Center">
+									<m:Text text='{i18n>labelAugcp}'/> 
+								</m:Column>
+							</m:columns>
+							<m:items>
+								<m:ColumnListItem>
+									<m:cells>
+										<m:Text text="{RowNum}" textAlign="Center" />
+										<m:Text text="{Shkzg}" textAlign="Center" />
+										<m:Text text="{Saknr}" textAlign="Center" />
+										<m:Text text="{Schlw}" textAlign="Center" />
+										<m:ObjectNumber 
+											number="{
+												parts: [
+													{path: 'Wrbtr'},
+													{path: 'Waers'}
+												],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+										}" 
+										unit="{Waers}"/>
+										<m:ObjectNumber 
+											number="{
+												parts: [
+													{path: 'Dmbtr'},
+													{path: 'Hwaer'}
+												],
+												type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}
+										}" 
+										unit="{Hwaer}"/>
+										<m:Text text="{Augcp}" />
+									</m:cells>
+								</m:ColumnListItem>
+							</m:items>
+						</m:Table>
+					</blocks>
+				</ObjectPageSubSection>
+			</subSections>
+		</ObjectPageSection>
+	</sections>
+	
+	</ObjectPageLayout>
+</mvc:View>
