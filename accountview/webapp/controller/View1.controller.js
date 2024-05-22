@@ -4,12 +4,14 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"sap/ui/model/Sorter",
 	"sap/m/MessageBox",
-	"sap/f/library"
+	"sap/f/library",
+	"sap/ui/unified/DateTypeRange",
+	"sap/ui/core/date/UI5Date"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, Sorter, MessageBox, fioriLibrary) {
+    function (Controller, Filter, FilterOperator, Sorter, MessageBox, fioriLibrary, DateTypeRange, UI5Date) {
         "use strict";
 
         return Controller.extend("sync.zeb.accountview.controller.View1", {
@@ -22,7 +24,7 @@ sap.ui.define([
 
             onSearch: function (oEvent) {
                     
-                var oTableSearchState = [],
+                let oTableSearchState = [],
                     sQuery = oEvent.getParameter("query");
 
                 // 검색어가 input 필드에서 제대로 가져와지는지 확인
@@ -34,6 +36,34 @@ sap.ui.define([
                 }
 
                 this.oCarrierTable.getBinding("items").filter(oTableSearchState, "Application");
+
+            },            
+            
+            onDate: function (oEvent) {
+                let oTableDateState = [],
+                    sQuery = oEvent.getParameter("query");
+                                
+                // 검색어가 input 필드에서 제대로 가져와지는지 확인
+                if (!sQuery) {
+                    sQuery = oEvent.getSource().getValue();
+                }
+                if (sQuery && sQuery.length === 7) {
+                    let startDate = sQuery + "-01";
+                    let endDate = sQuery + "-31";
+                   
+                    // 필터 생성 (시작일과 종료일 사이)
+                    let oStartDateFilter = new Filter("Budat", FilterOperator.GE, startDate);
+                    let oEndDateFilter = new Filter("Budat", FilterOperator.LE, endDate);
+
+                    // 필터 배열에 추가
+                    oTableDateState = new Filter({
+                        filters: [oStartDateFilter, oEndDateFilter],
+                        and: true
+                    });
+                }
+                
+                this.oCarrierTable.getBinding("items").filter(oTableDateState, "Application");
+
 
             },
 
@@ -49,13 +79,13 @@ sap.ui.define([
             },
 
             onListItemPress: function ( oEvent ) {
-                var oItem = oEvent.getSource(),
+                let oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
                 sBelnrD = oCtx.getProperty("BelnrD"),
                 sBukrs = oCtx.getProperty("Bukrs"),
                 sGjahr = oCtx.getProperty("Gjahr");
                 // debugger;
-                var oFCL = this.oView.getParent().getParent();
+                let oFCL = this.oView.getParent().getParent();
                 oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
 
                 this.oRouter.navTo("detail", {
@@ -64,7 +94,7 @@ sap.ui.define([
                     Gjahr: sGjahr,
                     layout: fioriLibrary.LayoutType.TwoColumnsMidExpanded
                 });
-                    // var oFCL = this.oView.getParent().getParent();
+                    // let oFCL = this.oView.getParent().getParent();
                     // oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
 
             }

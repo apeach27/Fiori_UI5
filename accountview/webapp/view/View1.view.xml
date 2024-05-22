@@ -1,7 +1,10 @@
 <mvc:View controllerName="sync.zeb.accountview.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:core="sap.ui.core"
     xmlns="sap.m"
-    xmlns:f="sap.f">
+    xmlns:f="sap.f"
+	xmlns:fiori="sap.ui.webc.fiori"
+	xmlns:l="sap.ui.layout">
 
     <f:DynamicPage id="idDynamicPage" toggleHeaderOnTitleClick="false">
 
@@ -14,10 +17,29 @@
             />
             <VBox fitContainer="true">
                 <OverflowToolbar class="sapFDynamicPageAlignContent">
-                    <ToolbarSpacer/>
-                    <SearchField search=".onSearch" placeholder="전표번호 Search" liveChange=".onSearch" width="17.5rem"/>
-                    <!-- <OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press=".onAdd"/>
-                    <OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press=".onSort"/> -->
+
+                    <ToolbarSpacer />
+                    <Label text='{i18n>labelBudat}:' labelFor="DATE"/>
+                    <l:VerticalLayout class="sapUiContentPadding">
+                        <DatePicker
+                        placeholder="2024-05"
+                        valueFormat="yyyy-MM"
+                        value="{
+                            'path': '2024-05-01',
+                            'type': 'sap.ui.model.type.Date',
+                            'formatOptions': {
+                                'pattern': 'yyyy-MM'
+                            }
+                        }"
+                        change="onDate"
+                        liveChange=".onDate"/>
+                    </l:VerticalLayout>
+                    
+                    <l:VerticalLayout>
+                        <ToolbarSpacer/>
+                        <SearchField search=".onSearch" placeholder="전표번호 Search" liveChange=".onSearch" width="17.5rem"/>
+                    </l:VerticalLayout>
+
                 </OverflowToolbar>
             </VBox>
         </f:DynamicPageHeader>
