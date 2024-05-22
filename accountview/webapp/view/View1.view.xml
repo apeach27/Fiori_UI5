@@ -4,18 +4,55 @@
     xmlns="sap.m"
     xmlns:f="sap.f"
 	xmlns:fiori="sap.ui.webc.fiori"
-	xmlns:l="sap.ui.layout">
+	xmlns:l="sap.ui.layout"
+	xmlns:semantic="sap.m.semantic">
 
     <f:DynamicPage id="idDynamicPage" toggleHeaderOnTitleClick="false">
 
     <f:header>
-        <f:DynamicPageHeader>
-            <Image 
-            src="../img/logo.png" 
-            width="20rem"
-            alt="company logo" 
-            />
+        <f:DynamicPageHeader >
+            <VBox>
+                <Image
+                src="../img/logo.png" 
+                width="20rem"
+                alt="company logo" 
+                />
+            </VBox>
             <VBox fitContainer="true">
+                <IconTabBar
+				id="iconTabBar"
+				select=".onQuickFilter"
+				expandable="false">
+                    <items>
+                        <IconTabFilter
+                        key="all"
+                        showAll="true"
+                        count="{worklistView>/countAll}"
+                        text="{i18n>FilterAll}"/>
+                        <IconTabSeparator/>
+                        
+                        <IconTabFilter
+                            key="inStock"
+                            icon="sap-icon://message-success"
+                            iconColor="Positive"
+                            count="{worklistView>/inStock}"
+                            text="{i18n>FilterInStock}"/>
+                            
+                        <IconTabFilter
+                            key="shortage"
+                            icon="sap-icon://message-warning"
+                            iconColor="Critical"
+                            count="{worklistView>/shortage}"
+                            text="{i18n>FilterShortage}"/>
+                        <!-- <IconTabFilter
+                            key="outOfStock"
+                            icon="sap-icon://message-error"
+                            iconColor="Negative"
+                            count="{worklistView>/outOfStock}"
+                            text="{i18n>WorklistFilterOutOfStock}"/> -->
+                    </items>
+			    </IconTabBar>
+
                 <OverflowToolbar class="sapFDynamicPageAlignContent">
 
                     <ToolbarSpacer />
@@ -41,8 +78,13 @@
                     </l:VerticalLayout>
 
                 </OverflowToolbar>
+
             </VBox>
+
+            
         </f:DynamicPageHeader>
+
+
     </f:header>
 
     <!-- DynamicPage Content -->
