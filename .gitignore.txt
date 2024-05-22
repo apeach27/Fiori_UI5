@@ -23,3 +23,5 @@ test/
 ## 폴더 무시
 test/
 node_modules/
+/node_modules/
+/test/
