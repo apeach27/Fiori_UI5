@@ -22,7 +22,6 @@
 					width="10rem"
 					alt="company logo"
 					class="sapUiSmallMarginBottom"/>
-					<m:Title text="{Carrid} {Carrname}" wrapping="true"/>
 				</m:FlexBox>
 			</snappedHeading>
 
@@ -31,11 +30,15 @@
 
 	<headerContent>
 		<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Start" class="sapUiTinyMarginEnd">
-		<m:Image
+            <m:VBox>
+                <m:Title text="전표번호 : {BelnrD}" wrapping="true"/>
+                <m:Title text="적요 : {Bktxt}" wrapping="true"/>
+            </m:VBox>
+		<!-- <m:Image
 		src="../img/logo.png"
 		width="12rem"
 		alt="company logo"
-		class="sapUiSmallMarginBottom"/>
+		class="sapUiSmallMarginBottom"/> -->
 		</m:FlexBox>
 		
 	</headerContent>
