@@ -15,7 +15,7 @@
                 <Image
                 src="../img/logo.png" 
                 width="20rem"
-                alt="company logo" 
+                alt="company logo"
                 />
             </VBox>
             <VBox fitContainer="true">
@@ -25,10 +25,10 @@
 				expandable="false">
                     <items>
                         <IconTabFilter
-                        key="all"
-                        showAll="true"
-                        count="{/CountSet('')/CountTotal}"
-                        text="{i18n>FilterAll}"/>
+                            key="all"
+                            showAll="true"
+                            count="{/CountSet('')/CountTotal}"
+                            text="{i18n>FilterAll}"/>
                         <IconTabSeparator/>
                         
                         <IconTabFilter

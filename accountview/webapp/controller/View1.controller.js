@@ -108,5 +108,25 @@ sap.ui.define([
                     }
                 });
             },
+
+            onQuickFilter: function( oEvent ){
+                let oBinding = this._oTable.getBinding("items"),
+				sKey = oEvent.getParameter("key"),
+
+				// Array to combine filters
+				aFilters = [],
+				oCombinedFilterG,
+				oCombinedFilterKG;
+
+                if (sKey === "CountComplete") {
+                
+        
+                } else if (sKey === "CountWait") {
+                    
+
+                }
+                oBinding.filter(aFilters);
+            
+            }
         });
     });
