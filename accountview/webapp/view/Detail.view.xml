@@ -17,11 +17,19 @@
 		<ObjectPageDynamicHeaderTitle>
 			<snappedHeading>
 				<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-					<m:Image
+					<!-- <m:Image
 					src="../img/logo.png"
 					width="10rem"
 					alt="company logo"
-					class="sapUiSmallMarginBottom"/>
+					class="sapUiSmallMarginBottom"/> -->
+					<m:Image 
+                    src="{
+                    value: 'sync/zeb/accountview/img/logo.png',
+                    formatter: 'sap.ui.require.toUrl'
+                    }"
+					width="10rem"
+					class="sapUiSmallMarginBottom"
+					/>
 				</m:FlexBox>
 			</snappedHeading>
 
@@ -34,11 +42,7 @@
                 <m:Title text="전표번호 : {BelnrD}" wrapping="true"/>
                 <m:Title text="적요 : {Bktxt}" wrapping="true"/>
             </m:VBox>
-		<!-- <m:Image
-		src="../img/logo.png"
-		width="12rem"
-		alt="company logo"
-		class="sapUiSmallMarginBottom"/> -->
+
 		</m:FlexBox>
 		
 	</headerContent>

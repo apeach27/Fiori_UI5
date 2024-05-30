@@ -12,49 +12,49 @@
     <f:header>
         <f:DynamicPageHeader >
             <VBox>
-                <Image
+                <!-- <Image
                 src="../img/logo.png" 
                 width="20rem"
                 alt="company logo"
+                /> -->
+                <Image 
+                    width="30rem"
+                    src="{
+                    value: 'sync/zeb/accountview/img//logo.png',
+                    formatter: 'sap.ui.require.toUrl'
+                    }"
                 />
             </VBox>
             <VBox fitContainer="true">
                 <IconTabBar
-				id="iconTabBar"
-				select=".onQuickFilter"
-				expandable="false">
-                    <items>
-                        <IconTabFilter
-                            key="all"
-                            showAll="true"
-                            count="{/CountSet('')/CountTotal}"
-                            text="{i18n>FilterAll}"/>
-                        <IconTabSeparator/>
-                        
-                        <IconTabFilter
-                            key="CountComplete"
-                            icon="sap-icon://message-success"
-                            iconColor="Positive"
-                            count="{/CountSet('')/CountComplete}"
-                            text="{i18n>FilterInStock}"/>
+                id="iconTabBar"
+                select="onQuickFilter"
+                expandable="false">
+                <items>
+                    <IconTabFilter
+                        key="all"
+                        showAll="true"
+                        count="{/CountSet('')/CountTotal}"
+                        text="{i18n>FilterAll}"/>
+                    <IconTabSeparator/>
+                    
+                    <IconTabFilter
+                        key="CountComplete"
+                        icon="sap-icon://message-success"
+                        iconColor="Positive"
+                        count="{/CountSet('')/CountComplete}"
+                        text="{i18n>FilterInStock}"/>
+            
+                    <IconTabFilter
+                        key="CountWait"
+                        icon="sap-icon://message-warning"
+                        iconColor="Critical"
+                        count="{/CountSet('')/CountWait}"
+                        text="{i18n>FilterShortage}"/>
+                </items>
+            </IconTabBar>
 
-                        <IconTabFilter
-                            key="CountWait"
-                            icon="sap-icon://message-warning"
-                            iconColor="Critical"
-                            count="{/CountSet('')/CountWait}"
-                            text="{i18n>FilterShortage}"/>
-                        <!-- <IconTabFilter
-                            key="outOfStock"
-                            icon="sap-icon://message-error"
-                            iconColor="Negative"
-                            count="{worklistView>/outOfStock}"
-                            text="{i18n>WorklistFilterOutOfStock}"/> -->
-                    </items>
-			    </IconTabBar>
-
-                <OverflowToolbar class="sapFDynamicPageAlignContent">
-
+                <OverflowToolbar class="sapFDynamicPageAlignContent">                   
                     <ToolbarSpacer />
                     <Label text='{i18n>labelBudat}:' labelFor="DATE"/>
                     <l:VerticalLayout class="sapUiContentPadding">

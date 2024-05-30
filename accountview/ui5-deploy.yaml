@@ -17,7 +17,7 @@ builder:
           url: HTTP://210.16.199.140:8001
           client: "100"
         app:
-          name: YE05_UI5_TEST
+          name: YE05_ACCOUNT
           description: 전표조회
           package: ZEB_FI
           transport: KYSK903559

@@ -3,22 +3,20 @@ sap.ui.define([
     "sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/ui/model/Sorter",
-	"sap/m/MessageBox",
-	"sap/f/library",
-	"sap/ui/unified/DateTypeRange",
-	"sap/ui/core/date/UI5Date"
+	"sap/f/library"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, Sorter, MessageBox, fioriLibrary, DateTypeRange, UI5Date) {
+    function (Controller, Filter, FilterOperator, Sorter, fioriLibrary) {
         "use strict";
 
         return Controller.extend("sync.zeb.accountview.controller.View1", {
             onInit: function () {
+                
                 this.oView = this.getView();
                 this._bDescendingSort = false;
-                this.oCarrierTable = this.oView.byId("idCarrierTable");
+                this.oViewTable = this.oView.byId("idCarrierTable"); 
                 this.oRouter = this.getOwnerComponent().getRouter();
             },
 
@@ -35,7 +33,7 @@ sap.ui.define([
                     oTableSearchState = new Filter("BelnrD", FilterOperator.Contains, sQuery);
                 }
 
-                this.oCarrierTable.getBinding("items").filter(oTableSearchState, "Application");
+                this.oViewTable.getBinding("items").filter(oTableSearchState, "Application");
 
             },            
             
@@ -62,17 +60,18 @@ sap.ui.define([
                     });
                 }
                 
-                this.oCarrierTable.getBinding("items").filter(oTableDateState, "Application");
+                this.oViewTable.getBinding("items").filter(oTableDateState, "Application");
 
 
             },
+
 
             onSort: function ( oEvent ) {
                 // sort 정보를 역으로 바꾸기 위해 ! 를 사용한다.
                 // 내림차순인 경우 오름차순으로 바꾸고
                 // 오름차순인 경우 내림차순으로 바꾸기 위해 true <=> false 로 전환한다.
                 this._bDescendingSort = !this._bDescendingSort;
-                let oBinding = this.oCarrierTable.getBinding("items"),
+                let oBinding = this.oViewTable.getBinding("items"),
                     oSorter = new Sorter("BelnrD", this._bDescendingSort);
 
                 oBinding.sort(oSorter);
@@ -80,10 +79,11 @@ sap.ui.define([
 
             onListItemPress: function ( oEvent ) {
                 let oItem = oEvent.getSource(),
-                oCtx = oItem.getBindingContext(),
-                sBelnrD = oCtx.getProperty("BelnrD"),
-                sBukrs = oCtx.getProperty("Bukrs"),
-                sGjahr = oCtx.getProperty("Gjahr");
+                    oCtx = oItem.getBindingContext(),
+                    sBelnrD = oCtx.getProperty("BelnrD"),
+                    sBukrs = oCtx.getProperty("Bukrs"),
+                    sGjahr = oCtx.getProperty("Gjahr");
+
                 // debugger;
                 let oFCL = this.oView.getParent().getParent();
                 oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
@@ -104,29 +104,28 @@ sap.ui.define([
 
                 this.getView().getModel().read("/CountSet('')", {
                     success: function (oData, oResponse) {
-                        oViewModel.setProperty("/inProductionCount", oData.CountProgress);
+                        if ( oViewModel ) {
+                            oViewModel.setProperty("/inProductionCount", oData.CountProgress);
+                        }
                     }
                 });
             },
 
-            onQuickFilter: function( oEvent ){
-                let oBinding = this._oTable.getBinding("items"),
-				sKey = oEvent.getParameter("key"),
+            onQuickFilter: function(oEvent) {
+                let oBinding = this.oViewTable.getBinding("items"),
+                sKey = oEvent.getParameter("key"),
+                aFilters = [];
 
-				// Array to combine filters
-				aFilters = [],
-				oCombinedFilterG,
-				oCombinedFilterKG;
+                if (sKey === "CountWait") {
+                    let oStatusFilter = new Filter("Bstat", FilterOperator.EQ, 'V');
+                    aFilters.push(oStatusFilter);
 
-                if (sKey === "CountComplete") {
-                
-        
-                } else if (sKey === "CountWait") {
-                    
-
+                } else if (sKey === "CountComplete") {
+                    let oStatusFilter = new Filter("Bstat", FilterOperator.EQ, '');
+                    aFilters.push(oStatusFilter);
                 }
-                oBinding.filter(aFilters);
-            
+
+                oBinding.filter(aFilters, "Application");
             }
         });
     });
