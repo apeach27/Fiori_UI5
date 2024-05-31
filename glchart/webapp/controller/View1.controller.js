@@ -69,20 +69,19 @@ sap.ui.define([
                     // 필터 생성 (시작일과 종료일 사이)
                     let oStartDateFilter = new Filter("Budat", FilterOperator.GE, startDate);
                     let oEndDateFilter = new Filter("Budat", FilterOperator.LE, endDate);
-                    console.log(oStartDateFilter, oEndDateFilter);
+                    
                     // 필터 배열에 추가
                     oTableDateState = new Filter({
                         filters: [oStartDateFilter, oEndDateFilter],
                         and: true
                     });
-                    console.log(oTableDateState);
                 }
-                
+                console.log(oTableDateState);
+
                 // var oDataset = this.oVizFrame.getDataset();
                 let oDataset = this.byId("idDataset");
                 let oBinding = oDataset.getBinding("data");
                 oBinding.filter(oTableDateState, "Application");
-
 
             }
         });

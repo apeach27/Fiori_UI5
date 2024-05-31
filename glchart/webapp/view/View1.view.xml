@@ -44,7 +44,7 @@
                                     <!-- <Label text='일자 :' labelFor="DATE"/> -->
                                     <l:VerticalLayout class="sapUiContentPaddingRight " >
                                         <DatePicker
-                                        placeholder="2024-05"
+                                        placeholder="날짜를 선택해주세요"
                                         valueFormat="yyyy-MM"
                                         value="{
                                             'path': '2024-05-01',

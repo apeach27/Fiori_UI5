@@ -87,7 +87,7 @@
                     <PropertyRef Name="Hwaer"/>
                     <PropertyRef Name="Shkzg"/>
                 </Key>
-                <Property Name="Budat" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="전기일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Budat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="전기일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Saknr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="계정번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Schlw" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="계정명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Dmbtr" Type="Edm.Decimal" Nullable="false" Precision="24" Scale="3" sap:unicode="false" sap:unit="Hwaer" sap:label="로컬금액" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
