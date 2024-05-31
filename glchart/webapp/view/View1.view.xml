@@ -1,7 +1,106 @@
-<mvc:View controllerName="sync.zeb.glchart.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+<mvc:View xmlns:f="sap.f" controllerName="sync.zeb.glchart.controller.View1"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls" 
+    xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:l="sap.ui.layout"
+>
+    <f:DynamicPage id="idDynamicPage" toggleHeaderOnTitleClick="false">
+
+        <f:header>
+            <f:DynamicPageHeader >
+                <VBox>
+                    <!-- <Image
+                    src="../img/logo.png" 
+                    width="20rem"
+                    alt="company logo" 
+                    /> -->
+                    <Image 
+                    width="30rem"
+                    src="{
+                    value: 'sync/zeb/glchart/img/logo.png',
+                    formatter: 'sap.ui.require.toUrl'
+                    }"
+                />
+                </VBox>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>     
+            <layout:FixFlex
+                vertical="true"
+                id="FixFlex"
+            >
+
+                <layout:fixContent>
+                    <Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" headerText="Settings" width="auto">
+                        <content>
+                            <HBox class='settingsHBox'>
+                                <VBox class='settingsBox'>
+                                    <ToolbarSpacer />
+                                    <!-- <Label text='일자 :' labelFor="DATE"/> -->
+                                    <l:VerticalLayout class="sapUiContentPaddingRight " >
+                                        <DatePicker
+                                        placeholder="2024-05"
+                                        valueFormat="yyyy-MM"
+                                        value="{
+                                            'path': '2024-05-01',
+                                            'type': 'sap.ui.model.type.Date',
+                                            'formatOptions': {
+                                                'pattern': 'yyyy-MM'
+                                            }
+                                        }"
+                                        change="onDate"
+                                        liveChange=".onDate"/>
+                                    </l:VerticalLayout>
+                                </VBox>
+
+                                <VBox class='settingsBox' >
+                                    <ToggleButton id="toggleDataLabel" text="Data Label 표시" press="onToggleDataLabel"/>
+                                </VBox>
+                                <VBox class='settingsBox' >
+                                    <ToggleButton id="toggleChartType" text="Chart Type 변경" press="onToggleChartType"/>
+                                </VBox>
+                            </HBox>
+
+                        </content>
+                    </Panel>
+                </layout:fixContent>
+                <layout:flexContent>
+                    <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                        height='100%' width="100%" vizType='bar'
+                        vizProperties="{
+                            'title':{
+                                'visible' : 'true',
+                                'text' : 'G/L계정별 금액'
+                            }
+                        }" >
+                        <viz:dataset>
+                            <viz.data:FlattenedDataset id="idDataset" data="{/BsegSet}">
+                                <viz.data:dimensions>
+                                    <viz.data:DimensionDefinition name="계정과목" value="{Schlw}" />
+                                </viz.data:dimensions>
+                                <viz.data:measures>
+                                    <viz.data:MeasureDefinition name="금액" value="{Dmbtr}" />
+                                    <viz.data:MeasureDefinition name="통화" value="{Hwaer}" />
+                                </viz.data:measures>
+                            </viz.data:FlattenedDataset>
+                        </viz:dataset>
+
+                        <viz:feeds>
+                            <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="금액" />
+                            <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="계정과목" />
+                        </viz:feeds>
+                        <viz:dependents>
+                            <viz:Popover id="idPopOver"></viz:Popover>
+                        </viz:dependents>
+                    </viz:VizFrame>
+                </layout:flexContent>
+            </layout:FixFlex>
+        </f:content>
+
+    </f:DynamicPage>
 </mvc:View>
